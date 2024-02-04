@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Product from '../../claass/product.class';
+import { ProductDetails } from '../../models/product.interface';
 
 @Component({
   selector: 'app-product-tiles',
@@ -7,7 +7,7 @@ import Product from '../../claass/product.class';
   styleUrl: './product-tiles.component.css'
 })
 export class ProductTilesComponent {
-  @Input() cardData: Product = {} as Product;
+  @Input() cardData: ProductDetails = {} as ProductDetails;
 
   constructor() { }
   ngOnInit() {
