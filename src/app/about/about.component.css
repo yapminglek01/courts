@@ -1,0 +1,31 @@
+
+.about-container {
+   
+    padding: 20px 150px; /* Add padding around the content */
+  }
+
+.title-container{
+
+    display: flex;
+    justify-content: center; /* horizontally centers the content */
+    align-items: center; /* vertically centers the content */
+}
+
+.example-card {
+    max-width: 100%; /* Ensure the card does not exceed its container */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items vertically */
+  }
+  
+  .card-content img {
+    max-width: 40%; /* Adjust the maximum width of the image as needed */
+    margin-right: 20px; /* Add spacing between the image and content */
+    height: 400px; /* Maintain aspect ratio */
+
+  }
+  
