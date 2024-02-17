@@ -24,6 +24,8 @@ import { ProductCategoryComponent } from './component/product-category/product-c
 import { MatCardModule } from '@angular/material/card';
 import { AboutComponent } from './about/about.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FaqComponent } from './about/faq/faq.component';
+
 
 
 
@@ -41,6 +43,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CarouselComponent,
     ProductCategoryComponent,
     AboutComponent,
+    FaqComponent,
     
     
   ],
@@ -54,7 +57,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatIconModule,
     MatGridListModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
 
     
 

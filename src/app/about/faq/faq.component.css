@@ -1,0 +1,21 @@
+.faq-container {
+   
+    padding: 20px 150px; /* Add padding around the content */
+  }
+
+.title-container{
+
+    display: flex;
+    justify-content: center; /* horizontally centers the content */
+    align-items: center; /* vertically centers the content */
+}
+
+.custom-title {
+    font-size: 24px; /* Adjust the font size as needed */
+
+  }
+  
+  .custom-text {
+    font-size: 20px; /* Adjust the font size as needed */
+  }
+  
