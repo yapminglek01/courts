@@ -4,6 +4,7 @@ import { ProductComponent } from './component/product/product.component';
 import { LoginComponent } from './content/login/login.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './content/home/home.component';
+import { DashboardComponent } from './content/admin/dashboard.component';
 
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'products', component: ProductComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ]
   },
   { path: 'login', component: LoginComponent }

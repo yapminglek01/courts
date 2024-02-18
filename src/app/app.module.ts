@@ -18,6 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './content/register/register.component';
 import { MaterialModule } from './modules/material.module';
 import { HomeComponent } from './content/home/home.component'; // Import ReactiveFormsModule if using reactive forms
+import { SalesRatioComponent } from './content/admin/dashboard/sales/sales-ratio.component';
+import { DashboardComponent } from './content/admin/dashboard.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { HomeComponent } from './content/home/home.component'; // Import Reactiv
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    SalesRatioComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,7 @@ import { HomeComponent } from './content/home/home.component'; // Import Reactiv
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
-
+    NgApexchartsModule
 
   ],
   providers: [],
