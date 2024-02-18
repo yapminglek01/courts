@@ -1,0 +1,23 @@
+.smalllogo {
+  width: 80px; /* Adjust logo width */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 10px; /* Add margin to top */
+}
+
+.footer {
+  position: relative; /* Change position to relative */
+  width: 100%;
+  height: auto; /* Let the height adjust automatically based on content */
+  background-color: #1c2331;
+  color: white;
+  padding: 5px; /* Add padding for better spacing */
+  text-align: center; /* Center align text */
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    height: auto; /* Let the height adjust automatically for smaller screens */
+  }
+}
+
+   

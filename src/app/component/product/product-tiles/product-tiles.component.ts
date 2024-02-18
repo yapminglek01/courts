@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductDetails } from '../../models/product.model';
+import { ProductDetails } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-tiles',

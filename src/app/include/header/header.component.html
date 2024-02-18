@@ -1,0 +1,52 @@
+<mat-toolbar color="primary" class="custom-toolbar">
+  <a routerLink="/home">
+    <img src="assets/images/logo1.png" alt="Logo" class="logo">
+  </a>
+
+  <span class="toolbar-text-bold">Malaysia</span>
+  <span class="spacer"></span>
+
+  <!-- Not logged in -->
+  <div class="button-container"  *ngIf="currentUser.role == null">
+    <button mat-button routerLink="/home" class="toolbar-button">Home</button>
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Product</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/about">Product</button>
+      <!-- Add more menu items as needed -->
+    </mat-menu>
+    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+    <button mat-raised-button routerLink="/login" class="toolbar-button">Login</button>
+    <!-- Add more buttons or components as needed -->
+  </div>
+
+  <!-- Admin -->
+  <div class="button-container" *ngIf="currentUser.role === 'admin'">
+    <button mat-button routerLink="/home" class="toolbar-button">Home Hi this is from admin</button>
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Product</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/about">Hi this is from admin</button>
+      <!-- Add more menu items as needed -->
+    </mat-menu>
+    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+    <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
+    <!-- Add more buttons or components as needed -->
+  </div>
+
+  <!-- User -->
+  <div class="button-container"  *ngIf="currentUser.role === 'user'">
+    <button mat-button routerLink="/home" class="toolbar-button">Home this is user</button>
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Product</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/about">This is from user</button>
+      <!-- Add more menu items as needed -->
+    </mat-menu>
+    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+    <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
+    <!-- Add more buttons or components as needed -->
+  </div>
+</mat-toolbar>
+
+

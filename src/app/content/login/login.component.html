@@ -1,0 +1,39 @@
+
+<div class="full-background">
+  <div class="logo-container">
+     <a routerLink="/"><img src="/assets/images/logo.png" class="img-fluid"></a>
+  </div>
+
+  <form [formGroup]="loginForm" (submit)="login()" autocomplete="new-password">
+    <h1>Login</h1>
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput placeholder="Email" formControlName="email" required>
+      <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+        Please enter a username.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.email.hasError('email')">
+        Please enter a valid email.
+      </mat-error>
+      <mat-icon matPrefix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput placeholder="Password" formControlName="password" required>
+      <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+        Please enter a password.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls.password.hasError('minlength')">
+        Password must be at least {{ passMinLength }} characters long.
+      </mat-error>
+      <mat-icon matPrefix>key</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Login &#8594;</button>
+    <button mat-raised-button type="button" (click)="onRegister()">Register</button>
+  </form>
+
+</div>
+
+
+

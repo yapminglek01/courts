@@ -1,0 +1,56 @@
+/* styles.css or header.component.css */
+
+/* Base styles */
+.mat-toolbar {
+  background-color:  rgb(250,203,8); /* Set background color to yellow */
+  color: rgb(255, 253, 253); /* Set text color to black or any other contrasting color */
+}
+
+.logo {
+  width: 140px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  margin-right: 16px; /* Optional margin */
+}
+
+.toolbar-text-bold {
+  font-size: 1.25em;
+}
+
+.custom-toolbar {
+  height: 75px; /* Adjust the height as needed */
+}
+
+.button-container {
+  display: flex;
+  margin-left: auto;
+}
+
+.toolbar-button {
+  margin-right: 10px; /* Adjust the margin as needed */
+  font-size: 25px; /* Increase the font */
+  padding: 30px 24px; /* Increase the padding */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .custom-toolbar {
+    height: auto; /* Let the height adjust automatically */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .logo {
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px; /* Add some space between logo and text */
+  }
+  
+  .button-container {
+    margin: 0; /* Reset margin */
+  }
+  
+  .toolbar-button {
+    margin: 5px 0; /* Add some space between buttons */
+    font-size: 20px; /* Reduce font size for smaller screens */
+    padding: 15px 20px; /* Reduce padding for smaller screens */
+  }
+}

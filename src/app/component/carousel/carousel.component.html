@@ -1,0 +1,19 @@
+<div class="carousel">
+    <div *ngFor="let item of items; let i = index" [class.active]="currentIndex === i" class="carousel-item">
+      <img [src]="item.imageUrl" alt="Carousel Item {{i + 1}}">
+    </div>
+    <div class="carousel-controls">
+        <button (click)="prev()" class="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+            <path fill="currentColor" d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button (click)="next()" class="next">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+            <path fill="currentColor" d="M9 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </div>
+      
+  </div>
+  
