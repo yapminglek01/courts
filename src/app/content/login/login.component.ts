@@ -36,7 +36,7 @@ export class LoginComponent {
 
     // Call your backend login service here
     await new Promise(resolve => setTimeout(resolve, 3000));
-    const loginStatus = false;
+    const loginStatus = this.loginForm.value.email === 'admin@gmail.com' && this.loginForm.value.password === 'admin'
 
     if(loginStatus) {
       Swal.fire({
