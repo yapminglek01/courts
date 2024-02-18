@@ -21,6 +21,8 @@ import { HomeComponent } from './content/home/home.component'; // Import Reactiv
 import { SalesRatioComponent } from './content/admin/dashboard/sales/sales-ratio.component';
 import { DashboardComponent } from './content/admin/dashboard.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { adminProduct } from './content/admin/product/admin-product.component';
+import { addProduct } from './content/admin/product/addProduct/add-product.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { NgApexchartsModule } from "ng-apexcharts";
     RegisterComponent,
     HomeComponent,
     SalesRatioComponent,
-    DashboardComponent
+    DashboardComponent,
+    adminProduct,
+    addProduct
   ],
   imports: [
     BrowserModule,
