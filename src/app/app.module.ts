@@ -1,41 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ProductTilesComponent } from './component/product-tiles/product-tiles.component';
-import { ProductComponent } from './product/product.component';
+import { HeaderComponent } from './include/header/header.component';
+import { FooterComponent } from './include/footer/footer.component';
+import { ProductTilesComponent } from './component/product/product-tiles/product-tiles.component';
+import { ProductComponent } from './component/product/product.component';
 import { MainComponent } from './main/main.component';
 import { CarouselComponent } from './component/carousel/carousel.component';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { ProductCategoryComponent } from './component/product-category/product-category.component';
-import { MatCardModule } from '@angular/material/card';
-import { AboutComponent } from './about/about.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { FaqComponent } from './about/faq/faq.component';
-import { LoginComponent } from './login/login.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { ProductCategoryComponent } from './component/product/product-category/product-category.component';
+import { AboutComponent } from './component/about/about.component';
+import { FaqComponent } from './component/faq/faq.component';
+import { LoginComponent } from './content/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component'; // Import ReactiveFormsModule if using reactive forms
-
-
-
-
-
-
-
+import { RegisterComponent } from './content/register/register.component';
+import { MaterialModule } from './modules/material.module';
+import { HomeComponent } from './content/home/home.component'; // Import ReactiveFormsModule if using reactive forms
 
 @NgModule({
   declarations: [
@@ -51,24 +33,15 @@ import { RegisterComponent } from './register/register.component'; // Import Rea
     FaqComponent,
     LoginComponent,
     RegisterComponent,
-    
-    
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
     BrowserAnimationsModule,
-    MatMenuModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
-   
-    
+    MaterialModule,
+
 
   ],
   providers: [],
