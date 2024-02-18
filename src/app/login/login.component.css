@@ -1,0 +1,72 @@
+/* styles.css or your component's CSS file */
+.full-background {
+  background-color: rgba(255, 223, 0, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  justify-content: center;
+
+}
+
+.logo-container{
+  position: absolute; /* Position the .logo-container absolutely */
+  top: 10px; /* Adjust the top offset as needed */
+  left: 50%; /* Center the .logo-container horizontally */
+  transform: translateX(-50%); 
+
+
+}
+
+
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 150px 16px 16px 24px;
+  border-radius: 4px;
+
+  h1 {
+    margin-top: 0;
+    color: #555;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.form-control {
+  margin-bottom: 16px;
+  input,
+  label {
+    display: block;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  input {
+    padding: 8px;
+    height: 35px;
+    border-radius: 4px;
+    width: 100%;
+    border: 2px solid #ccc;
+    background-color: white;
+
+  }
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1.2rem;
+}

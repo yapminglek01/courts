@@ -1,0 +1,41 @@
+<!-- app.component.html -->
+<div class="full-background">
+  <div class="logo-container">
+     <a routerLink="/"><img src="/assets/images/logo.png" class="img-fluid"></a>
+  </div>
+
+  <form [formGroup]="loginForm" (submit)="login()" autocomplete="new-password">
+    <h1>Login</h1>
+  
+    <div class="form-control">
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        id="email"
+        autocomplete="new-password"
+        type="email"
+      />
+    </div>
+  
+    <div class="form-control">
+      <label for="password">Password</label>
+      <input
+        formControlName="password"
+        id="password"
+        autocomplete="new-password"
+        type="password"
+      />
+    </div>
+  
+    <button type="submit">Login &#8594;</button>
+    <button type="submit">Register</button>
+    
+
+
+  </form>
+
+</div>
+
+
+
+ 

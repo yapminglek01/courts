@@ -25,6 +25,11 @@ import { MatCardModule } from '@angular/material/card';
 import { AboutComponent } from './about/about.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FaqComponent } from './about/faq/faq.component';
+import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component'; // Import ReactiveFormsModule if using reactive forms
+
 
 
 
@@ -44,6 +49,8 @@ import { FaqComponent } from './about/faq/faq.component';
     ProductCategoryComponent,
     AboutComponent,
     FaqComponent,
+    LoginComponent,
+    RegisterComponent,
     
     
   ],
@@ -58,7 +65,9 @@ import { FaqComponent } from './about/faq/faq.component';
     MatGridListModule,
     MatCardModule,
     MatExpansionModule,
-
+    MatFormFieldModule,
+    ReactiveFormsModule,
+   
     
 
   ],
