@@ -16,3 +16,19 @@
     
   }
   
+  /* Adjust the sizing and spacing of form elements */
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px; /* Add space between form fields */
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  width: 100%; /* Make the button full-width */
+  margin-top: 20px; /* Add space above the button */
+}
+
+
+.file-input{
+  margin-bottom: 20px;
+}

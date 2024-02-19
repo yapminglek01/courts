@@ -19,7 +19,14 @@ export class addProduct {
         price: new FormControl('', {validators: [Validators.required]}),
         description: new FormControl('', {validators: [Validators.required]}),
         numberOfProducts: new FormControl('', {validators: [Validators.required]}),
+        
     });
+
+    // Define the method to handle file selection
+    onFileSelected(event: any) {
+      const file: File = event.target.files[0];
+      // Handle the file as needed
+    }
 
     async addProduct() {
         if (this.addProductForm.invalid) return;
@@ -37,6 +44,9 @@ export class addProduct {
           this.router.navigate(['dashboard']);
         }, 500); // Wait for 2 seconds before navigation
       
+        
           
     }
+   
+    
 }
