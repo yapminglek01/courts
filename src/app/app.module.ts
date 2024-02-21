@@ -23,6 +23,7 @@ import { DashboardComponent } from './content/admin/dashboard.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
+import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { addProduct } from './content/admin/product/addProduct/add-product.compo
     SalesRatioComponent,
     DashboardComponent,
     adminProduct,
-    addProduct
+    addProduct,
+    nonUserProduct
   ],
   imports: [
     BrowserModule,
