@@ -8,6 +8,7 @@ import { DashboardComponent } from './content/admin/dashboard.component';
 import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
 import { nonUserProduct } from './content/NonUser/nonUser-product.component';
+import { customerProduct } from './content/customer/customer-product.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'adminProduct', component: adminProduct },
       { path: 'addProduct', component: addProduct},
       { path: 'nonUserProduct', component: nonUserProduct},
+      { path: 'customerProduct', component: customerProduct},
     ]
   },
   { path: 'login', component: LoginComponent }

@@ -24,6 +24,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
 import { nonUserProduct } from './content/NonUser/nonUser-product.component';
+import { customerProduct } from './content/customer/customer-product.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { nonUserProduct } from './content/NonUser/nonUser-product.component';
     DashboardComponent,
     adminProduct,
     addProduct,
-    nonUserProduct
+    nonUserProduct,
+    customerProduct
   ],
   imports: [
     BrowserModule,

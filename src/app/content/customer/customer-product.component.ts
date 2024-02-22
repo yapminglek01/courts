@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nonUser-product',
-  templateUrl: './nonUser-product.component.html',
-  styleUrl: './nonUser-product.component.css'
+  selector: 'app-customer-product',
+  templateUrl: './customer-product.component.html',
+  styleUrl: './customer-product.component.css'
 })
 
-export class nonUserProduct {
+export class customerProduct {
 
   constructor(private router:Router){
   }
   navigate() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/customerProduct']);
   }
   products = [
     { name: 'Product 1', description: 'Description of Product 1', price: '$10.00', imageUrl: 'assets/images/c5.jpg' },
