@@ -12,10 +12,40 @@
         </mat-error>
         <mat-icon matPrefix>mail</mat-icon>
       </mat-form-field>
-
-      <!-- Password -->
-
-      <!-- Confirm Password -->
+      
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password" required>
+        <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+          Please enter a password.
+        </mat-error>
+        <mat-icon matPrefix>lock</mat-icon>
+      </mat-form-field>
+      
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Name" formControlName="name" required>
+        <mat-error *ngIf="registerForm.controls.name.hasError('required')">
+          Please enter your name.
+        </mat-error>
+        <mat-icon matPrefix>account_circle</mat-icon> <!-- Use the user icon (account_circle) -->
+      </mat-form-field>
+      
+      <mat-form-field class="w-100" appearance="fill">
+        <div class="phone-input-container">
+          <span class="country-code">+60</span>
+          <input type="text" matInput placeholder="Enter your phone number" formControlName="phoneNumber" required>
+        </div>
+        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">
+          Please enter a phone number.
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('pattern')">
+          Please enter a valid phone number.
+        </mat-error>
+        <mat-icon matPrefix>phone</mat-icon>
+      </mat-form-field>
+      
+ 
 
 
       <button mat-raised-button type="submit">Register</button>

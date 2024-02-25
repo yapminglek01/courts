@@ -1,5 +1,16 @@
+body {
+  position: relative;
+  background-image: url('/assets/images/b1.jpg');
+
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5)), url(/assets/images/b1.jpg);}
+
+
+
+
+
 /* styles.css or your component's CSS file */
 .full-background {
+
   background-color: rgba(255, 223, 0, 1);
   position: fixed;
   top: 50%;
@@ -69,4 +80,5 @@ button {
   border-radius: 4px;
   width: 100%;
   font-size: 1.2rem;
+  margin-bottom: 10px; /* Adjust the margin value as needed */
 }
