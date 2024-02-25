@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent {
   passMinLength = 4;
 
-  constructor(private router: Router, private matDialog: MatDialog) {}
+  constructor(private router: Router, private matDialog: MatDialog, private authService: AuthService) {}
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -35,8 +36,7 @@ export class LoginComponent {
     });
 
     // Call your backend login service here
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const loginStatus = false;
+    const loginStatus = await this.authService.login(this.loginForm.value);
 
     if(loginStatus) {
       Swal.fire({
@@ -45,13 +45,9 @@ export class LoginComponent {
         icon: 'success',
         showConfirmButton: false,
         allowOutsideClick: false,
+        timer: 2000,
       });
-      // Navigate to home
-
-      await this.delay(2000);
       this.router.navigate(['']);
-      Swal.close();
-
     } else {
       // If error, then show error message
       Swal.fire({
@@ -67,7 +63,5 @@ export class LoginComponent {
     this.matDialog.open(RegisterComponent);
   }
 
-  private delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+
 }
