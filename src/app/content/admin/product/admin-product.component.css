@@ -22,3 +22,10 @@
     background-color: #007bff; /* Background color on hover */
     color: #fff; /* Text color on hover */
   }
+
+  table {
+    width: 40%;
+    margin-bottom: 15%;
+  }
+
+  
