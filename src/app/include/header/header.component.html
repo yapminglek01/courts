@@ -14,8 +14,8 @@
       <button mat-menu-item routerLink="/about">Product</button>
       <!-- Add more menu items as needed -->
     </mat-menu>
-    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
-    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+    <button mat-button routerLink="/about" class="toolbar-button">Location</button>
+    <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
     <button mat-raised-button routerLink="/login" class="toolbar-button">Login</button>
     <!-- Add more buttons or components as needed -->
   </div>
@@ -29,22 +29,32 @@
       <!-- Add more menu items as needed -->
     </mat-menu>
     <button mat-button routerLink="/about" class="toolbar-button">Product</button>
-    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+    <button mat-button routerLink="/about" class="toolbar-button">Location</button>
+    <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
     <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
     <!-- Add more buttons or components as needed -->
   </div>
 
   <!-- User -->
   <div class="button-container"  *ngIf="currentUser.role === 'user'">
-    <button mat-button routerLink="/home" class="toolbar-button">Home this is user</button>
-    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Product</button>
+    
+    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/about" class="toolbar-button">Location</button>
+
+    <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
+
+    <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Account</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/about">This is from user</button>
+      <button mat-menu-item routerLink="/order">My order</button>
+
+      <button mat-menu-item routerLink="/profile">My Profile</button>
+      <button mat-menu-item routerLink="/productd">Product details</button>
+
       <!-- Add more menu items as needed -->
     </mat-menu>
-    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
-    <button mat-button routerLink="/about" class="toolbar-button">About Us</button>
+
     <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
+
     <!-- Add more buttons or components as needed -->
   </div>
 </mat-toolbar>

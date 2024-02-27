@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,19 @@ import { LoginComponent } from './content/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './content/register/register.component';
 import { MaterialModule } from './modules/material.module';
-import { HomeComponent } from './content/home/home.component'; // Import ReactiveFormsModule if using reactive forms
+import { HomeComponent } from './content/home/home.component';
+import { AboutUsComponent } from './content/about-us/about-us.component';
+import { ProfileComponent } from './content/profile/profile.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
+import { OrderComponent } from './component/order/order.component';
+import { OrderpgComponent } from './content/orderpg/orderpg.component';
+import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import { ProductpgComponent } from './content/productpg/productpg.component';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +47,14 @@ import { HomeComponent } from './content/home/home.component'; // Import Reactiv
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    AboutUsComponent,
+    ProfileComponent,
+    UserProfileComponent,
+    OrderComponent,
+    OrderpgComponent,
+    ProductInfoComponent,
+    ProductDetailsComponent,
+    ProductpgComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +62,16 @@ import { HomeComponent } from './content/home/home.component'; // Import Reactiv
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
+    FormsModule,
+    DataViewModule,
+    RatingModule,
+    TagModule,
+
 
 
   ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

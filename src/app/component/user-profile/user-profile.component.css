@@ -1,0 +1,71 @@
+.title-container{
+
+    display: flex;
+    justify-content: center; /* horizontally centers the content */
+    align-items: center; /* vertically centers the content */
+    padding: 20px 150px; /* Add padding around the content */
+
+}
+mat-card {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .profile-content {
+    display: flex;
+    align-items: center;
+    padding-bottom: 18px;
+  }
+  
+  .left-content {
+    flex: 1;
+  }
+  
+  .divider {
+    border-right: 1px solid #030303;
+    width: 10px; /* Add width */
+    height: 100%; /* Add height */
+    margin: 0 20px;
+  }
+  
+  
+  .right-content {
+    flex: 2;
+  }
+  
+  .profile-image {
+    width: 200px; /* Adjust image size as needed */
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .profile-detail {
+    margin-bottom: 15px; /* Increase spacing between lines */
+  }
+  
+
+  
+  
+  .label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 22px; /* Increase font size */
+
+  }
+  
+  .value {
+    font-size: 22px; /* Increase font size */
+  }
+  
+  mat-card-actions {
+    justify-content: center;
+  }
+  
+  button {
+    margin: 0 10px;
+  }
+  

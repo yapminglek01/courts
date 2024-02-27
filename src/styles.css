@@ -1,8 +1,10 @@
 /* styles.css */
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import "primeflex/primeflex.css";
 
 
-html, body { height: 100%; }
+html, body { height: 100%; 
+ }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; /* Adjust the last value (alpha) for transparency */
  /* Adjust the last value (alpha) for transparency */
 

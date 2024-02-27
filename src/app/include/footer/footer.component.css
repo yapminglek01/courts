@@ -5,13 +5,13 @@
 }
 
 .footer {
-  position: relative; /* Change position to relative */
   width: 100%;
-  height: auto; /* Let the height adjust automatically based on content */
   background-color: #1c2331;
   color: white;
   padding: 5px; /* Add padding for better spacing */
   text-align: center; /* Center align text */
+  bottom: 0; /* Align to the bottom of the viewport */
+
 }
 
 @media screen and (max-width: 768px) {

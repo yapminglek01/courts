@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center; /* horizontally centers the content */
     align-items: center; /* vertically centers the content */
+    padding-bottom: 20px; /* Adds 20 pixels of padding at the bottom */
+
 }
 
 .custom-title {
