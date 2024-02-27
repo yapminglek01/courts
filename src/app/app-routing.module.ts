@@ -9,7 +9,8 @@ import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
 import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 import { customerProduct } from './content/customer/customer-product.component';
-import { storesMap } from './content/maps/stores-map.component';
+import { storesMapNonUser } from './content/maps-nonUser/stores-map.component';
+import { storesMapUser } from './content/maps-User/stores-map.component';
 
 
 
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: 'addProduct', component: addProduct},
       { path: 'nonUserProduct', component: nonUserProduct},
       { path: 'customerProduct', component: customerProduct},
-      { path: 'stores-map', component: storesMap},
+      { path: 'stores-map-nonUser', component: storesMapNonUser},
+      { path: 'stores-map-User', component: storesMapUser}
     ]
   },
   { path: 'login', component: LoginComponent }

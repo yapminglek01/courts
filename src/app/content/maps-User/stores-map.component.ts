@@ -11,7 +11,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
   templateUrl: './stores-map.component.html',
   styleUrls: ['./stores-map.component.css']
 })
-export class storesMap {
+export class storesMapUser {
   
   constructor() {}
         
