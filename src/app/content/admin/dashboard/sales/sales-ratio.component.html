@@ -1,0 +1,29 @@
+<div class="chart-container">
+  <div class="chart-section">
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile class="a">
+        <mat-grid-tile-header [style.backgroundColor]="'black'">Yearly Sales</mat-grid-tile-header>
+        <h3>RM10,000.00</h3>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.backgroundColor]="'black'">Monthly Sales</mat-grid-tile-header>
+        <h3>RM600.00</h3>
+      </mat-grid-tile>
+    </mat-grid-list>
+      
+      
+      <div class="chart-item">
+        <h2 class="report-title">Monthly Sales Chart</h2>
+        <apx-chart [series]="salesChartOptions1.series" [chart]="salesChartOptions1.chart"
+                   [plotOptions]="salesChartOptions1.plotOptions"
+                   [xaxis]="salesChartOptions1.xaxis" [yaxis]="salesChartOptions1.yaxis"
+                   [grid]="salesChartOptions1.grid" [stroke]="salesChartOptions1.stroke"
+                   [tooltip]="salesChartOptions1.tooltip" [dataLabels]="salesChartOptions1.dataLabels"
+                   [legend]="salesChartOptions1.legend" [colors]="salesChartOptions1.colors"
+                   [markers]="salesChartOptions1.markers">
+        </apx-chart>
+      </div>
+    </div>
+  </div>
+
+  

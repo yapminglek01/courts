@@ -1,0 +1,57 @@
+<div class="form-container">
+  <form [formGroup]="addProductForm" (submit)="addProduct()">
+    <h3>Add Product</h3>
+    
+    <!-- Choose Picture -->
+    <!-- <label for="fileInput" class="file-label">Choose Picture</label> -->
+    <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+
+    <!-- Product Name -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input type="text" matInput placeholder="Product Name" formControlName="productName" required>
+      <mat-error *ngIf="addProductForm.controls.productName.hasError('required')">
+        Please enter Product Name
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Location -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Location</mat-label>
+      <input type="text" matInput placeholder="Location" formControlName="location" required>
+      <mat-error *ngIf="addProductForm.controls.location.hasError('required')">
+        Please enter Location
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Price -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Price</mat-label>
+      <input type="number" matInput placeholder="Price" formControlName="price" required min="0.01" step="0.01">
+      <mat-error *ngIf="addProductForm.controls.price.hasError('required')">
+        Please enter Price
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+      <mat-error *ngIf="addProductForm.controls.description.hasError('required')">
+        Please enter Description
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Number of Products -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Number of Products</mat-label>
+      <input type="number" matInput placeholder="Number of Products" formControlName="numberOfProducts" required min="1">
+      <mat-error *ngIf="addProductForm.controls.numberOfProducts.hasError('required')">
+        Please enter Number of Products
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</div>

@@ -1,9 +1,6 @@
-/* styles.css or header.component.css */
-
-/* Base styles */
 .mat-toolbar {
-  background-color:  rgb(250,203,8); /* Set background color to yellow */
-  color: rgb(255, 253, 253); /* Set text color to black or any other contrasting color */
+  background-color:  rgb(250, 203, 8); /* Set background color to yellow */
+  color: rgb(255, 253, 253); /* Set text color to white or any other contrasting color */
 }
 
 .logo {
@@ -23,12 +20,13 @@
 .button-container {
   display: flex;
   margin-left: auto;
+  align-items: center; /* Align buttons vertically in the center */
 }
 
 .toolbar-button {
   margin-right: 10px; /* Adjust the margin as needed */
-  font-size: 25px; /* Increase the font */
-  padding: 30px 24px; /* Increase the padding */
+  font-size: 20px; /* Reduce font size */
+  padding: 10px 20px; /* Reduce padding */
 }
 
 /* Responsive styles */
@@ -50,7 +48,7 @@
   
   .toolbar-button {
     margin: 5px 0; /* Add some space between buttons */
-    font-size: 20px; /* Reduce font size for smaller screens */
-    padding: 15px 20px; /* Reduce padding for smaller screens */
+    font-size: 18px; /* Reduce font size for smaller screens */
+    padding: 8px 16px; /* Reduce padding for smaller screens */
   }
 }

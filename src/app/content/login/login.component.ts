@@ -47,7 +47,11 @@ export class LoginComponent {
         allowOutsideClick: false,
         timer: 2000,
       });
-      this.router.navigate(['']);
+      if(this.authService.getCurrentUser().role === 'admin'){
+        this.router.navigate(['dashboard']);
+      } else {
+        this.router.navigate(['']);
+      }
     } else {
       // If error, then show error message
       Swal.fire({

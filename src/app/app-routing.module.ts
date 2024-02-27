@@ -10,6 +10,13 @@ import { OrderpgComponent } from './content/orderpg/orderpg.component';
 import { ProductpgComponent } from './content/productpg/productpg.component';
 
 
+import { DashboardComponent } from './content/admin/dashboard.component';
+import { adminProduct } from './content/admin/product/admin-product.component';
+import { addProduct } from './content/admin/product/addProduct/add-product.component';
+import { nonUserProduct } from './content/NonUser/nonUser-product.component';
+import { customerProduct } from './content/customer/customer-product.component';
+import { storesMapNonUser } from './content/maps-nonUser/stores-map.component';
+import { storesMapUser } from './content/maps-User/stores-map.component';
 
 
 
@@ -23,10 +30,13 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'order', component: OrderpgComponent },
       { path: 'productd', component: ProductpgComponent },
-
-
-
-
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'adminProduct', component: adminProduct },
+      { path: 'addProduct', component: addProduct},
+      { path: 'nonUserProduct', component: nonUserProduct},
+      { path: 'customerProduct', component: customerProduct},
+      { path: 'stores-map-nonUser', component: storesMapNonUser},
+      { path: 'stores-map-User', component: storesMapUser}
     ]
   },
   { path: 'login', component: LoginComponent }
