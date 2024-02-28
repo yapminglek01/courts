@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
+  items = Array.from({length: 10}).map((_, i) => `Item #${i}`);
 
 }

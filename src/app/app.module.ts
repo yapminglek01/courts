@@ -79,7 +79,7 @@ import { customerProduct } from './content/customer/customer-product.component';
     DataViewModule,
     RatingModule,
     TagModule,
-    NgApexchartsModule
+   NgApexchartsModule
 
   ],
   providers: [],

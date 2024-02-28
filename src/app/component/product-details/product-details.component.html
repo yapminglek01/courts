@@ -1,1 +1,42 @@
-<p>product-details works!</p>
+<div class="product-container">
+    
+    <div>
+      <!-- Here's the container for the tabs -->
+      <mat-tab-group>
+        <mat-tab label="Description">
+          <!-- Content for the description tab goes here -->
+          <p> Product details of course your home should be a safe place for the entire family. 
+            That’s why a safety fitting is included so that you can attach the wardrobe to the wall.
+            Maximise your storage and create a coordinated look by building your own KLEPPSTAD wardrobe combination.
+
+            Additional KLEPPSTAD shelves can be purchased to customise your storage solution to your personal needs.</p>
+            <p>Materials & care
+                Material
+                Top panel/ Bottom panel/ Side panel/ Shelf/ Plinth/ Door:
+                Particleboard, Paper foil
+                Back panel:
+                Fibreboard, Printed acrylic paint
+                Care
+                Wipe clean with a cloth dampened in a mild cleaner.
+                
+                Wipe dry with a clean cloth.</p>
+
+                <p>Measurements
+                    Width: 117 cm
+                    
+                    Depth: 55 cm
+                    
+                    Height: 176 cm</p>
+        </mat-tab>
+        <mat-tab label="Reviews">
+          <!-- Content for the reviews tab goes here -->
+          <p>Comment</p>
+          <cdk-virtual-scroll-viewport appendOnly itemSize="10" class="example-viewport">
+            <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
+        </cdk-virtual-scroll-viewport>
+        
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  

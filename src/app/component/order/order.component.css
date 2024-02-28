@@ -31,8 +31,8 @@
   }
   
   .product-image img {
-    width: 100px; /* Adjust image size as needed */
-    height: auto;
+    width: 200px; /* Adjust image size as needed */
+    height: 230px;
   }
   
   /* Order Details */
@@ -42,11 +42,12 @@
   
   .order-details h2 {
     margin: 0 0 5px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .order-details p {
     margin: 0;
+    font-size: 1.2rem;
   }
   
   .order-header {
