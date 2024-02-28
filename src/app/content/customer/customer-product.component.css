@@ -1,24 +1,29 @@
 .title-container {
-    text-align: center; /* Align text to center */
-    border-bottom: 1px solid black; /* Thin underline with solid black color */
-    margin-bottom: 20px; /* Add some space below the title */
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
     margin-top: 40px;
-}
-
-.title-container h1 {
-    display: inline-block; /* Ensure the underline spans the entire width */
-    padding-bottom: 5px; /* Adjust the space between the text and underline */
-}
-
-.mat-grid-tile{
-    margin-top: -100px; ;
-}
-.example-card{
+  }
+  
+  .title-container h1 {
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .example-card img {
+    width: 230px; /* You can adjust this value */
+    height: 250px; /* You can adjust this value */
+    object-fit: cover;
+  }
+  
+  .example-card {
     width: 100%;
-    
-}
+  }
 
+  .ct1 {
+    margin: 0 auto;
+  }
 
-
-
-
+  .container {
+    margin-bottom: 30px;
+  }

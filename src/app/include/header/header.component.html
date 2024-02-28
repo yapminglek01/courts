@@ -10,7 +10,7 @@
   <div class="button-container"  *ngIf="currentUser.role == null">
     <button mat-button routerLink="/home" class="toolbar-button">Home</button>
     <button mat-button routerLink="/nonUserProduct" class="toolbar-button">Product</button>
-    <button mat-button routerLink="/stores-map" class="toolbar-button">Location</button>
+    <button mat-button routerLink="/stores-map-nonUser" class="toolbar-button">Location</button>
     <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
     <button mat-raised-button routerLink="/login" class="toolbar-button">Login</button>
     <!-- Add more buttons or components as needed -->
@@ -19,13 +19,9 @@
   <!-- Admin -->
   <div class="button-container" *ngIf="currentUser.role === 'admin'">
     <button mat-button routerLink="/home" class="toolbar-button">Home Hi this is from admin</button>
-    
-    <button mat-button routerLink="/about" class="toolbar-button">Product</button>
-    <button mat-button routerLink="/about" class="toolbar-button">Location</button>
-    <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
-    <button mat-button routerLink="/dashboard" class="toolbar-button">Home</button>
+    <button mat-button routerLink="/dashboard" class="toolbar-button">Sales Report </button>
     <!-- <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Product</button> -->
-    <button mat-button routerLink="/adminProduct" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/adminProduct" class="toolbar-button">Manage Product</button>
     <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
     <!-- Add more buttons or components as needed -->
   </div>

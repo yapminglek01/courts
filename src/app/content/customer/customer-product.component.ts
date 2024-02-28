@@ -12,7 +12,7 @@ export class customerProduct {
   constructor(private router:Router){
   }
   navigate() {
-    this.router.navigate(['/customerProduct']);
+    this.router.navigate(['/productd']);
   }
   products = [
     { name: 'Product 1', description: 'Description of Product 1', price: '$10.00', imageUrl: 'assets/images/c5.jpg' },
