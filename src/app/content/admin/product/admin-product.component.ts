@@ -8,6 +8,7 @@ export interface Product {
   location: string;
   price: number;
   description: string;
+  stock: string;
   // Assuming actions is an array of strings representing possible actions
   actions: string[]; 
 }
@@ -19,6 +20,7 @@ const ELEMENT_DATA: Product[] = [
     location: 'Location 1', 
     price: 10.99, 
     description: 'Description of Product 1', 
+    stock: '3',
     actions: ['Edit', 'Delete'] 
   },
   { 
@@ -28,6 +30,7 @@ const ELEMENT_DATA: Product[] = [
     location: 'Location 2', 
     price: 20.99, 
     description: 'Description of Product 2', 
+    stock: '5',
     actions: ['Edit', 'Delete'] 
   },
   // Add more products here
@@ -39,7 +42,7 @@ const ELEMENT_DATA: Product[] = [
   styleUrl: './admin-product.component.css'
 })
 export class adminProduct {
-  displayedColumns: string[] = ['image', 'name', 'category', 'location', 'price', 'description', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'category', 'location', 'price', 'description','stock', 'actions'];
   dataSource = ELEMENT_DATA;
   
 }

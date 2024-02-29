@@ -15,6 +15,15 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Product Category -->
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Product Category</mat-label>
+      <input type="text" matInput placeholder="Product Category" formControlName="productCategory" required>
+      <mat-error *ngIf="addProductForm.controls.productCategory.hasError('required')">
+        Please enter Product Category
+      </mat-error>
+    </mat-form-field>
+
     <!-- Location -->
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Location</mat-label>

@@ -111,5 +111,4 @@ export class SalesRatioComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
 }

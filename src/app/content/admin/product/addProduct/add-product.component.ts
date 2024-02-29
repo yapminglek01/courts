@@ -14,6 +14,7 @@ export class addProduct {
 
     addProductForm = new FormGroup({
         productName: new FormControl('', {validators: [Validators.required]}),
+        productCategory: new FormControl('', {validators: [Validators.required]}),
         location: new FormControl('', {validators: [Validators.required]}),
         price: new FormControl('', {validators: [Validators.required]}),
         description: new FormControl('', {validators: [Validators.required]}),
