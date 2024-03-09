@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-add-product',
@@ -10,12 +13,12 @@ import { Router } from '@angular/router';
 })
 export class addProduct {
     
-    constructor(private router: Router) {}
+    constructor(private router: Router, private authService: AuthService, private registerPop: MatDialog) {}
 
     addProductForm = new FormGroup({
+        imagePath:new FormControl('', {validators: [Validators.required]}),
         productName: new FormControl('', {validators: [Validators.required]}),
-        productCategory: new FormControl('', {validators: [Validators.required]}),
-        location: new FormControl('', {validators: [Validators.required]}),
+        productDetails: new FormControl('', {validators: [Validators.required]}),
         price: new FormControl('', {validators: [Validators.required]}),
         description: new FormControl('', {validators: [Validators.required]}),
         numberOfProducts: new FormControl('', {validators: [Validators.required]}),
@@ -30,23 +33,51 @@ export class addProduct {
 
     async addProduct() {
         if (this.addProductForm.invalid) return;
-      
-        await Swal.fire({
-          title: 'Success!',
-          text: 'You have successfully added product!',
-          icon: 'success',
-          showConfirmButton: false,
-          allowOutsideClick: false,
-          timer: 1000,
-        });
+        this.authService.addProduct(this.addProductForm.value)
+        .subscribe((response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: response.message,
+            icon: 'success',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            timer: 2000,
+          });
+          this.registerPop.closeAll();
+        }, (error) =>{
+          Swal.fire({
+            title: 'Error!',
+            text: error.error.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        })
       
         setTimeout(() => {
           this.router.navigate(['dashboard']);
-        }, 500); // Wait for 2 seconds before navigation
-      
-        
-          
+        }, 500); // Wait for 2 seconds before navigation    
     }
    
-    
+
+    // register() {
+    //   if (this.addProductForm.invalid) return;
+    //   this.authService.register(this.addProductForm.value)
+    //   .subscribe((response) => {
+    //     Swal.fire({
+    //       title: 'Success!',
+    //       text: response.message,
+    //       icon: 'success',
+    //       showConfirmButton: false,
+    //       allowOutsideClick: false,
+    //       timer: 2000,
+    //     });
+    //     this.registerPop.closeAll();
+    //   }, (error) =>{
+    //     Swal.fire({
+    //       title: 'Error!',
+    //       text: error.error.message,
+    //       icon: 'error',
+    //       confirmButtonText: 'OK'
+    //     });
+    //   })
 }

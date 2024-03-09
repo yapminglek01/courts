@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable, map } from 'rxjs';
+import { UserApiResponse } from './http.response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private currentUser: any = null;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  
 
-  async login(data: any | object){
-    await this.delay(2000);
-    if(data.email === 'admin@gmail.com' && data.password === 'admin') {
-      this.setCurrentUser({email: data.email, role: 'admin'});
-      return true;
-    }
-    else if(data.email === 'user@gmail.com' && data.password === 'user') {
-      this.setCurrentUser({email: data.email, role: 'user'});
-      return true;
-    }
+  register(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/register`, data)
+  }
 
-    return false;
+  
+  addProduct(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/addProduct`, data)
+  }
+
+  login(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/login`, data)
+      .pipe(
+        map((res: UserApiResponse) => {
+          if(res.status === 200){
+            this.setUser(res.data)
+          }
+          return res;
+        })
+      )
   }
 
   logout(){
@@ -37,5 +50,13 @@ export class AuthService {
   // Temporary delay simulation. Can be removed when backend is ready
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private setUser(data: any){
+    data.role =
+    data.type === 'U' ? 'user' : 
+    data.type === 'A' ? 'admin' :
+    ''
+    this.setCurrentUser(data);
   }
 }

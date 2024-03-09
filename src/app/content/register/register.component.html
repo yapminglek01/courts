@@ -34,20 +34,28 @@
       <mat-form-field class="w-100" appearance="fill">
         <div class="phone-input-container">
           <span class="country-code">+60</span>
-          <input type="text" matInput placeholder="Enter your phone number" formControlName="phoneNumber" required>
+          <input type="text" matInput placeholder="Enter your phone number" formControlName="phone" required>
         </div>
-        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required')">
+        <mat-error *ngIf="registerForm.controls.phone.hasError('required')">
           Please enter a phone number.
         </mat-error>
-        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('pattern')">
+        <mat-error *ngIf="registerForm.controls.phone.hasError('pattern')">
           Please enter a valid phone number.
         </mat-error>
         <mat-icon matPrefix>phone</mat-icon>
       </mat-form-field>
       
- 
-
-
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input type="text" matInput placeholder="Address" formControlName="address" required>
+        <mat-error *ngIf="registerForm.controls.address.hasError('required')">
+          Please enter your address.
+        </mat-error>
+        <mat-icon matPrefix>account_circle</mat-icon> <!-- Use the user icon (account_circle) -->
+      </mat-form-field>
+      
+      
+      
       <button mat-raised-button type="submit">Register</button>
     </form>
 </div>

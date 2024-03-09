@@ -6,6 +6,7 @@ import { RegisterComponent } from '../register/register.component';
 
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -36,31 +37,33 @@ export class LoginComponent {
     });
 
     // Call your backend login service here
-    const loginStatus = await this.authService.login(this.loginForm.value);
+    const loginStatus = this.authService.login(this.loginForm.value)
 
-    if(loginStatus) {
-      Swal.fire({
-        title: 'Success!',
-        text: 'You are now logged in',
-        icon: 'success',
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        timer: 2000,
-      });
-      if(this.authService.getCurrentUser().role === 'admin'){
-        this.router.navigate(['dashboard']);
-      } else {
-        this.router.navigate(['']);
+    loginStatus.subscribe(
+      (response) => {
+        Swal.fire({
+          title: 'Success!',
+          text: 'You are now logged in',
+          icon: 'success',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          timer: 2000,
+        });
+        if(this.authService.getCurrentUser().role === 'admin'){
+          this.router.navigate(['dashboard']);
+        }else{
+          this.router.navigate([''])
+        }
+      },
+      (error) => {
+        Swal.fire({
+          title: 'Error!',
+          text: error.error.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
-    } else {
-      // If error, then show error message
-      Swal.fire({
-        title: 'Error!',
-        text: 'Invalid email or password',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
-    }
+    )
   }
 
   onRegister() {

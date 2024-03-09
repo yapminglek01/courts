@@ -4,7 +4,7 @@
     
     <!-- Choose Picture -->
     <!-- <label for="fileInput" class="file-label">Choose Picture</label> -->
-    <input type="file" id="fileInput" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+    <input type="file" id="fileInput" formControlName="imagePath" accept="image/*" (change)="onFileSelected($event)" class="file-input">
 
     <!-- Product Name -->
     <mat-form-field class="w-100" appearance="fill">
@@ -15,23 +15,15 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- Product Category -->
+    <!-- Product Details -->
     <mat-form-field class="w-100" appearance="fill">
-      <mat-label>Product Category</mat-label>
-      <input type="text" matInput placeholder="Product Category" formControlName="productCategory" required>
-      <mat-error *ngIf="addProductForm.controls.productCategory.hasError('required')">
-        Please enter Product Category
+      <mat-label>Product Details</mat-label>
+      <input type="text" matInput placeholder="Product Details" formControlName="productDetails" required>
+      <mat-error *ngIf="addProductForm.controls.productDetails.hasError('required')">
+        Please enter Product Details
       </mat-error>
     </mat-form-field>
 
-    <!-- Location -->
-    <mat-form-field class="w-100" appearance="fill">
-      <mat-label>Location</mat-label>
-      <input type="text" matInput placeholder="Location" formControlName="location" required>
-      <mat-error *ngIf="addProductForm.controls.location.hasError('required')">
-        Please enter Location
-      </mat-error>
-    </mat-form-field>
 
     <!-- Price -->
     <mat-form-field class="w-100" appearance="fill">
