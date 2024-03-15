@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, map } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { UserApiResponse } from './http.response.interface';
 
 @Injectable({
@@ -13,14 +13,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   
 
+
   register(data: any | object): Observable<any> {
     return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/register`, data)
   }
 
-  
-  addProduct(data: any | object): Observable<any> {
-    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/addProduct`, data)
-  }
 
   login(data: any | object): Observable<any> {
     return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/login`, data)
@@ -28,6 +25,8 @@ export class AuthService {
         map((res: UserApiResponse) => {
           if(res.status === 200){
             this.setUser(res.data)
+            this.currentUser = res.data; // Set currentUser after successful login
+
           }
           return res;
         })
@@ -59,4 +58,29 @@ export class AuthService {
     ''
     this.setCurrentUser(data);
   }
+  
+
+ 
+
+  verifyOldPassword(oldPassword: string): Observable<boolean> {
+    // Check if currentUser is set
+    if (!this.currentUser) {
+        console.error('User is not logged in');
+        return throwError('User is not logged in');
+    }
+
+    // Construct the URL using the appropriate endpoint
+    const apiUrl = `${environment.api_url}/api/auth/verify-old-password`;
+
+    // Make the request using the constructed URL
+    return this.http.post<boolean>(apiUrl, { oldPassword });
+}
+
+
+updatePassword(newPassword: string): Observable<any> {
+  // Make an HTTP request to your backend to update the password
+  // Example:
+  return this.http.post<any>(`${this.currentUser}/update-password`, { newPassword });
+}
+  
 }

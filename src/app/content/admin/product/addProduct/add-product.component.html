@@ -4,7 +4,7 @@
     
     <!-- Choose Picture -->
     <!-- <label for="fileInput" class="file-label">Choose Picture</label> -->
-    <input type="file" id="fileInput" formControlName="imagePath" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+    <input type="file" id="fileInput" formControlName="image" accept="image/*" (change)="onFileSelected($event)" class="file-input">
 
     <!-- Product Name -->
     <mat-form-field class="w-100" appearance="fill">
@@ -28,8 +28,8 @@
     <!-- Price -->
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Price</mat-label>
-      <input type="number" matInput placeholder="Price" formControlName="price" required min="0.01" step="0.01">
-      <mat-error *ngIf="addProductForm.controls.price.hasError('required')">
+      <input type="number" matInput placeholder="Price" formControlName="productPrice" required min="0.01" step="0.01">
+      <mat-error *ngIf="addProductForm.controls.productPrice.hasError('required')">
         Please enter Price
       </mat-error>
     </mat-form-field>
@@ -37,8 +37,8 @@
     <!-- Description -->
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description" formControlName="description" required></textarea>
-      <mat-error *ngIf="addProductForm.controls.description.hasError('required')">
+      <textarea matInput placeholder="Description" formControlName="productDescription" required></textarea>
+      <mat-error *ngIf="addProductForm.controls.productDescription.hasError('required')">
         Please enter Description
       </mat-error>
     </mat-form-field>
@@ -46,8 +46,8 @@
     <!-- Number of Products -->
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Number of Products</mat-label>
-      <input type="number" matInput placeholder="Number of Products" formControlName="numberOfProducts" required min="1">
-      <mat-error *ngIf="addProductForm.controls.numberOfProducts.hasError('required')">
+      <input type="number" matInput placeholder="Number of Products" formControlName="quantity" required min="1">
+      <mat-error *ngIf="addProductForm.controls.quantity.hasError('required')">
         Please enter Number of Products
       </mat-error>
     </mat-form-field>

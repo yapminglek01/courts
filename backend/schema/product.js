@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const productSchema = mongoose.Schema({
     imagePath: { type: String } ,// File path for the image
-
     productName: { type: String, required: true },
     productDetails: { type: String, required: true },
     productPrice: { type: Number, required: true },
@@ -14,19 +13,9 @@ const productSchema = mongoose.Schema({
     averageRating: { type: Number, default: 0 },
 });
 
-productSchema.plugin(uniqueValidator);
-
-module.exports = mongoose.model('Product', productSchema);
 
 
+productSchema.plugin(uniqueValidator)
 
-/*
-userSchema.pre('save', async function(next){
-    const user = this;
-    // Encrypt user password here
-    user.password = encrypt(user.password)
-    next()
-})
-*/
-
+module.exports = mongoose.model('Product', productSchema)
 

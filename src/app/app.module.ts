@@ -38,6 +38,8 @@ import { addProduct } from './content/admin/product/addProduct/add-product.compo
 import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 import { customerProduct } from './content/customer/customer-product.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UpdatePassComponent } from './component/update-pass/update-pass.component';
+import { UpdateProfileComponent } from './component/update-profile/update-profile.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     adminProduct,
     addProduct,
     nonUserProduct,
-    customerProduct
+    customerProduct,
+    UpdatePassComponent,
+    UpdateProfileComponent
   ],
   imports: [
     BrowserModule,

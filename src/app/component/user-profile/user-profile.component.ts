@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
+import { AuthService } from '../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdatePassComponent } from '../update-pass/update-pass.component';
 
 
 @Component({
@@ -10,18 +13,18 @@ import { DataViewModule } from 'primeng/dataview';
 })
 export class UserProfileComponent {
 
-  profileData = {
-    id: '12345',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    address: '123 Street, City, State, Country'
-  };
+  profileData: any;
 
-  updatePassword() {
-    // Implement password update logic here
-    console.log('Updating password...');
+  constructor(private matDialog: MatDialog, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    // Retrieve current user data
+    this.profileData = this.authService.getCurrentUser();
   }
+
+  
+
+ 
 
   editProfile() {
     // Implement profile edit logic here
@@ -29,5 +32,7 @@ export class UserProfileComponent {
   }
   products: any[] = []; // Define the 'products' property as an array of any type
 
-  
+  updatePassword() {
+    this.matDialog.open(UpdatePassComponent);
+  }
 }
