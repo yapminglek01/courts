@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../schema/user')
+const { checkAuth, signToken } = require('../middleware/check-auth')
+const { validatePassword, encryptPassword } = require('../middleware/bcrypt')
 //const Order = require('../schema/order')
 
 
@@ -13,13 +15,13 @@ router.get('/test', (req, res) => {
 
 router.post('/register', async (req, res) => {
     const user = new User(req.body);
+    user.password = await encryptPassword(user.password)
     try {
         await user.save();
         return res.status(200).send({status: 200, message: "Account registered successfully"})
     } catch (error) {
         return res.status(400).send({status: 400, message: error.message})
     }
-    return res.status(401).send({status: 401, message: "An error has occured"})
 })
 
 
@@ -28,52 +30,34 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({email: email});
 
     if(user === null) return res.status(400).send({status: 400, message: 'User does not exist'})
-    if(user.password !== password)  return res.status(400).send({status: 400, message: 'Password is incorrect'})
 
-    return res.status(200).send({status: 200, message: "Login success", data: user})
+
+    const result = await validatePassword(password, user.password)
+    if(!result) return res.status(400).send({status: 400, message: 'Username or password is incorrect'})
+
+    const token = signToken(user);
+
+    const data = {
+        user: user,
+        token: token
+    }
+
+    return res.status(200).send({status: 200, message: "Login success", data: data})
 })
 
-router.post('/verify-old-password', auth, async (req, res) => {
+router.post('/update-password', checkAuth(), async (req, res) => {
+    const user = res.userData // from token
+    const { oldPassword, newPassword } = req.body
     try {
-        const { oldPassword } = req.body;
-        const userId = req.user.id;
-
-        // Fetch the user from the database
-        const user = await User.findById(userId);
-
-        // Check if the old password matches the stored password
-        const passwordMatch = await bcrypt.compare(oldPassword, user.password);
-
-        if (passwordMatch) {
-            res.status(200).json({ valid: true });
-        } else {
-            res.status(400).json({ valid: false });
-        }
+        const current = await User.findOne({_id: user._id})
+        const passMatch = await validatePassword(oldPassword, current.password)
+        if(!passMatch) throw new Error('Old Password does not match')
+        const new_password = await encryptPassword(newPassword)
+        const result = await User.findOneAndUpdate({_id: user._id}, {password: new_password})
+        if(result === null) return res.status(400).send({status: 400, message: 'An error occured'})
+        return res.status(200).send({status: 200, message: 'Password successfully updated'})
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Failed to verify old password' });
-    }
-});
-
-router.post('/update-password', auth, async (req, res) => {
-    try {
-        const { newPassword } = req.body;
-        const userId = req.user.id;
-
-        // Hash the new password before updating
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-        // Update user's password in the database
-        const updatedUser = await User.findByIdAndUpdate(userId, { password: hashedPassword }, { new: true });
-
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json({ message: 'Password updated successfully', user: updatedUser });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Failed to update password' });
+        return res.status(400).send({status: 400, message: error.message})
     }
 });
 

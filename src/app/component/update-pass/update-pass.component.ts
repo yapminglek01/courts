@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,63 +15,47 @@ export class UpdatePassComponent {
     oldPassword: new FormControl('', Validators.required),
     newPassword: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required),
-  });
+  }, {validators: this.confirmPasswordValidation('newPassword', 'confirmPassword')});
+
+
+  confirmPasswordValidation(password: string, confirmPassword: string): ValidatorFn {
+    return (control: AbstractControl): {[key: string] : any} | null => {
+      const passwordControl = control.get(password);
+      const confirmPasswordControl = control.get(confirmPassword);
+      if(confirmPasswordControl?.value === '') return null;
+      if(passwordControl?.value !== confirmPasswordControl?.value){
+        return { 'mismatch': true };
+      }
+      return null;
+    }
+  }
 
   constructor(private authService: AuthService, private updatePop: MatDialog) {}
 
   updatePassword() {
-    if (!this.updatePasswordForm || this.updatePasswordForm.invalid) return;
-  
-    const oldPassword = this.updatePasswordForm.get('oldPassword')?.value;
-    const newPassword = this.updatePasswordForm.get('newPassword')?.value;
-    const confirmPassword = this.updatePasswordForm.get('confirmPassword')?.value;
-  
-    if (!oldPassword || !newPassword || !confirmPassword) {
-      // Handle null or undefined values appropriately
-      console.log("1")
+    if(this.updatePasswordForm.invalid) return;
 
+    const updateStatus = this.authService.updatePassword(this.updatePasswordForm.value)
 
-      return;
-    }
-  
-    if (newPassword !== confirmPassword) {
-      console.log("2")
-      // Passwords don't match, handle this case appropriately
-      return;
-    }
-  
-    // Verify old password
-    this.authService.verifyOldPassword(oldPassword).subscribe(valid => {
-      if (valid) {
-        // Old password is correct, update password
-        this.authService.updatePassword(newPassword).subscribe(response => {
-          Swal.fire({
-            title: 'Success!',
-            text: response.message, // Use response message from server
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2000
-          }).then(() => {
-            this.updatePop.closeAll();
-          });
-        }, error => {
-          Swal.fire({
-            title: 'Error!',
-            text: error.message, // Use error message from server
-            icon: 'error',
-            confirmButtonText: 'OK'
-          });
+    updateStatus.subscribe(
+      (response) =>{
+        Swal.fire({
+          title: 'Success!',
+          text: 'Successfully updated password',
+          icon: 'success',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          timer: 2000,
         });
-      } else {
-        // Old password is incorrect
+      },
+      (error) => {
         Swal.fire({
           title: 'Error!',
-          text: 'Old password is incorrect.',
+          text: error.error.message,
           icon: 'error',
           confirmButtonText: 'OK'
         });
       }
-    });
+    )
   }
-  
 }

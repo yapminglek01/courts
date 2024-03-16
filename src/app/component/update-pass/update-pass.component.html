@@ -28,6 +28,9 @@
             <mat-error *ngIf="updatePasswordForm.controls.confirmPassword.hasError('required')">
                 Please confirm your new password.
             </mat-error>
+            <mat-error *ngIf="updatePasswordForm.controls.confirmPassword.hasError('mismatch')">
+                Password does not match.
+            </mat-error>
             <mat-icon matPrefix>lock</mat-icon>
         </mat-form-field>
 
