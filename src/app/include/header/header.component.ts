@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   currentUser: any = this.authService.getCurrentUser();
-currentUserId: any;
+  currentUserId: any;
 
   constructor(private authService: AuthService, private router:Router) {}
 
