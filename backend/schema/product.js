@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const productSchema = mongoose.Schema({
-    imagePath: { type: String },
     imageData: { 
         buffer: { type: Buffer },
         mimetype: { type: String },
