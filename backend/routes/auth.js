@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
     return res.status(200).send({status: 200, message: "Login success", data: user})
 })
 
-router.post('/verify-old-password', auth, async (req, res) => {
+router.post('/verify-old-password', async (req, res) => {
     try {
         const { oldPassword } = req.body;
         const userId = req.user.id;
@@ -55,7 +55,7 @@ router.post('/verify-old-password', auth, async (req, res) => {
     }
 });
 
-router.post('/update-password', auth, async (req, res) => {
+router.post('/update-password', async (req, res) => {
     try {
         const { newPassword } = req.body;
         const userId = req.user.id;
