@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ProductDetails } from '../../../models/product.model';
+import { AuthService } from '../../../services/auth.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-tiles',
@@ -9,11 +12,19 @@ import { ProductDetails } from '../../../models/product.model';
 export class ProductTilesComponent {
   @Input() cardData: ProductDetails = {} as ProductDetails;
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router) { }
   ngOnInit() {
   }
 
   selectProduct(id: string){
-    console.log(id)
+    if(this.auth.getCurrentUser().role == null){
+      Swal.fire({
+        // position: "top-end",
+        icon: "info",
+        title: "Please login to continue",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   }
 }
