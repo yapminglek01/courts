@@ -9,7 +9,6 @@ import { ProfileComponent } from './content/profile/profile.component';
 import { OrderpgComponent } from './content/orderpg/orderpg.component';
 import { ProductpgComponent } from './content/productpg/productpg.component';
 
-
 import { DashboardComponent } from './content/admin/dashboard.component';
 import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
@@ -17,9 +16,6 @@ import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 import { customerProduct } from './content/customer/customer-product.component';
 import { storesMapNonUser } from './content/maps-nonUser/stores-map.component';
 import { storesMapUser } from './content/maps-User/stores-map.component';
-
-
-
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [

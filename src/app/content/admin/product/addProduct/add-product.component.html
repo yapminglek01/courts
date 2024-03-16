@@ -1,13 +1,21 @@
 <div class="form-container">
-  <form [formGroup]="addProductForm" (submit)="addProduct()">
+  <form [formGroup]="addProductForm" (submit)="addProduct()" enctype="multipart/form-data">
     <h3>Add Product</h3>
     
     <!-- Choose Picture -->
     <!-- <label for="fileInput" class="file-label">Choose Picture</label> -->
-    <input type="file" id="fileInput" formControlName="image" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+    <!-- <input type="file" id="fileInput" formControlName="image" accept="image/*" (change)="onFileSelected($event)" class="file-input"> -->
+
+    
+    <input type="file" (change)="onFileSelected($event)" hidden #fileInput formControlName="image">
+    <button mat-raised-button (click)="fileInput.click()">Choose Image</button>
+    <span *ngIf="file" class="ps-2">{{ file.name }}</span>
+    <mat-error *ngIf="addProductForm.controls.image.hasError('required')">
+      Please select an image
+    </mat-error>
 
     <!-- Product Name -->
-    <mat-form-field class="w-100" appearance="fill">
+    <mat-form-field class="w-100 mt-2" appearance="fill">
       <mat-label>Product Name</mat-label>
       <input type="text" matInput placeholder="Product Name" formControlName="productName" required>
       <mat-error *ngIf="addProductForm.controls.productName.hasError('required')">

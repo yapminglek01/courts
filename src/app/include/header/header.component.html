@@ -31,6 +31,7 @@
     <button mat-button routerLink="/home" class="toolbar-button">Home this is user</button>
     
     <button mat-button routerLink="/customerProduct" class="toolbar-button">Product</button>
+    <button mat-button routerLink="/products" class="toolbar-button">Product</button>
     <button mat-button routerLink="stores-map-User" class="toolbar-button">Location</button>
     <button mat-button routerLink="/about-us" class="toolbar-button">About Us</button>
     <button mat-button [matMenuTriggerFor]="menu" class="toolbar-button">Account</button>
@@ -42,7 +43,6 @@
       <!-- Add more menu items as needed -->
     </mat-menu>
     <button mat-raised-button (click)="logout()" class="toolbar-button">Logout</button>
-
     <!-- Add more buttons or components as needed -->
   </div>
 </mat-toolbar>

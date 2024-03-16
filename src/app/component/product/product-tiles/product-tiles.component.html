@@ -1,8 +1,7 @@
-<div class="card" >
-  <img class="card-img-top" [src]="cardData.image" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ cardData.title }}</h5>
-    <p class="card-text">{{ cardData.content }}</p>
-    <p>The price placeholder {{ cardData.price }}</p>
-  </div>
-</div>
+<mat-card class="card" (click)="selectProduct(cardData.id)">
+    <img mat-card-image [src]="cardData.image">
+    <mat-card-content>
+        <h3>{{cardData.title}}</h3>
+        <p>RM {{cardData.price | number:'1.2-2' }}</p>
+    </mat-card-content>
+</mat-card>
