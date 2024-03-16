@@ -18,4 +18,8 @@ export class ProductService {
   getProduct(): Observable<any>{
     return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/getProducts`);
   }
+
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete<any>(`${environment.api_url}/api/product/deleteProduct/${productId}`);
+  }
 }

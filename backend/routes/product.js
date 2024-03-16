@@ -33,4 +33,16 @@ router.post('/addProduct', memoryUpload.single('image'), async (req, res) => {
     // return res.status(401).send({status: 401, message: "An error has occured"})
 })
 
+router.delete('/deleteProduct/:productId', async (req, res) => {
+    const { productId } = req.params;
+    try {
+        await Product.findByIdAndDelete(productId);
+        return res.status(200).send({ status: 200, message: "Product deleted successfully" });
+    } catch (error) {
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
+
+
+
 module.exports = router;

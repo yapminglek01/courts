@@ -28,4 +28,11 @@
     margin-bottom: 15%;
   }
 
+  .description-cell {
+    max-width: 500px; /* Adjust the width as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
   
