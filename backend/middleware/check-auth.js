@@ -27,7 +27,7 @@ const checkAuth = (users = undefined) =>{
 
 const signToken = (data) => {
     return jwt.sign(JSON.parse(JSON.stringify(data)), secret_string, {
-        expiresIn: '1h'
+        expiresIn: 3600
     })
 }
 

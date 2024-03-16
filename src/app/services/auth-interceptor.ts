@@ -23,8 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // send cloned request with header to the next handler.
     return next.handle(authReq).pipe(
         catchError((res) => {
-            console.log(res)
-            if(res.error.error === 'jwt expired'){
+            if(res.error.data === 'jwt expired'){
               Swal.mixin({
               icon: 'error',
               showCancelButton: false,
