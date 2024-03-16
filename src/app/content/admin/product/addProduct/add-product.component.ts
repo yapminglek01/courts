@@ -13,25 +13,18 @@ import { ProductService } from '../../../../services/product.service';
 })
 export class addProduct {
     
-    constructor(private router: Router, private productService: ProductService, private registerPop: MatDialog) {}
-     file:File | any
-    onFileSelected(event: any) {
-      this.file = event.target.files[0];
-
-      // Handle the file as needed
-    }
+    constructor(private router: Router, private productService: ProductService, private dialogPop: MatDialog) {}
 
     addProductForm = new FormGroup({
-        image:new FormControl('', {validators: [Validators.required]}),
+        image: new FormControl('', {validators: [Validators.required]}),
         productName: new FormControl('', {validators: [Validators.required]}),
         productDetails: new FormControl('', {validators: [Validators.required]}),
         productPrice: new FormControl('', {validators: [Validators.required]}),
         productDescription: new FormControl('', {validators: [Validators.required]}),
         quantity: new FormControl('', {validators: [Validators.required]}),
-        
     });
 
-
+    file: File | any
 
     async addProduct() {
         if (this.addProductForm.invalid) return;
@@ -43,10 +36,8 @@ export class addProduct {
             formData.append(controlName, this.addProductForm.get(controlName)?.value);
         });
 
-        // return;
-        this.productService.addProduct(this.addProductForm.value)
+        this.productService.addProduct(formData)
         .subscribe((response) => {
-          console.log("ok1")
           Swal.fire({
             title: 'Success!',
             text: response.message,
@@ -55,9 +46,8 @@ export class addProduct {
             allowOutsideClick: false,
             timer: 2000,
           });
-          this.registerPop.closeAll();
+          this.dialogPop.closeAll();
         }, (error) =>{
-          console.log("ok2")
           Swal.fire({
             title: 'Error!',
             text: error.error.message,
@@ -66,31 +56,12 @@ export class addProduct {
           });
         })
       
-        setTimeout(() => {
-          this.router.navigate(['dashboard']);
-        }, 500); // Wait for 2 seconds before navigation    
+        // setTimeout(() => {
+        //   this.router.navigate(['dashboard']);
+        // }, 500); // Wait for 2 seconds before navigation    
     }
-   
 
-    // register() {
-    //   if (this.addProductForm.invalid) return;
-    //   this.authService.register(this.addProductForm.value)
-    //   .subscribe((response) => {
-    //     Swal.fire({
-    //       title: 'Success!',
-    //       text: response.message,
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       allowOutsideClick: false,
-    //       timer: 2000,
-    //     });
-    //     this.registerPop.closeAll();
-    //   }, (error) =>{
-    //     Swal.fire({
-    //       title: 'Error!',
-    //       text: error.error.message,
-    //       icon: 'error',
-    //       confirmButtonText: 'OK'
-    //     });
-    //   })
+    onFileSelected(event: any) {
+      this.file = event.target.files[0];
+    }
 }

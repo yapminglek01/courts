@@ -12,4 +12,8 @@ export class ProductTilesComponent {
   constructor() { }
   ngOnInit() {
   }
+
+  selectProduct(id: string){
+    console.log(id)
+  }
 }

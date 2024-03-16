@@ -14,4 +14,8 @@ export class ProductService {
   addProduct(data: any | object): Observable<any> {
     return this.http.post<UserApiResponse>(`${environment.api_url}/api/product/addProduct`, data)
   }
+
+  getProduct(): Observable<any>{
+    return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/getProducts`);
+  }
 }
