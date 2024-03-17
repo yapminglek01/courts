@@ -41,6 +41,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UpdatePassComponent } from './component/update-pass/update-pass.component';
 import { UpdateProfileComponent } from './component/update-profile/update-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { AuthInterceptor } from './services/auth-interceptor';
     nonUserProduct,
     customerProduct,
     UpdatePassComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,

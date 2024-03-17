@@ -44,7 +44,7 @@ export class addProduct {
             icon: 'success',
             showConfirmButton: false,
             allowOutsideClick: false,
-            timer: 2000,
+            timer: 1000,
           });
           this.dialogPop.closeAll();
         }, (error) =>{
@@ -56,9 +56,9 @@ export class addProduct {
           });
         })
       
-        // setTimeout(() => {
-        //   this.router.navigate(['dashboard']);
-        // }, 500); // Wait for 2 seconds before navigation    
+        setTimeout(() => {
+          this.router.navigate(['adminProduct']);
+        }, 500); 
     }
 
     onFileSelected(event: any) {
