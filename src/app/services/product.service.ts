@@ -22,4 +22,4 @@ export class ProductService {
   deleteProduct(productId: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/api/product/deleteProduct/${productId}`);
   }
-}
+}  

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service'; 
 
-
 @Component({
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
@@ -21,22 +20,30 @@ export class adminProduct implements OnInit {
   getProducts(): void {
     this.productService.getProduct().subscribe(
       (response) => {
-        this.dataSource = response.data.map((productData: any) => {
-          const product = new Product(productData);
-          product.id = productData._id; // Set the id property to _id from the response
-          return product;
+        const products = response.data.map((e: any) => {
+          const uint = new Uint8Array(e.imageData.buffer.data);
+          const base64String = "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
+          return new Product({
+            id: e._id,
+            productName: e.productName,
+            price: e.productPrice,
+            productDescription: e.productDescription,
+            quantity: e.quantity,
+            image: base64String
+          });
         });
+        this.dataSource = products;
       },
       (error) => {
         console.error('Error fetching products:', error);
       }
     );
   }
-
+  
 
   deleteProduct(product: Product): void {
     if (product.id) {
-      console.log(product.id)
+      console.log(product.id);
       this.productService.deleteProduct(product.id).subscribe(
         (response) => {
           this.dataSource = this.dataSource.filter(p => p.id !== product.id);
@@ -47,9 +54,8 @@ export class adminProduct implements OnInit {
         }
       );
     } else {
-      console.log(product.id)
+      console.log(product.id);
       console.error('Product id is undefined:', product);
     }
   }
-
 }
