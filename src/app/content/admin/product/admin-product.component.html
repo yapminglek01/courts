@@ -29,9 +29,9 @@
   
     <!-- Price Column -->
     <ng-container matColumnDef="productPrice">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
-        <td mat-cell *matCellDef="let product"> {{ product.productPrice | currency:'RM' }} </td>
-    </ng-container>
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let product"> {{ product.price | currency:'RM' }} </td>
+    </ng-container> 
   
     <!-- Description Column -->
     <ng-container matColumnDef="productDescription">
