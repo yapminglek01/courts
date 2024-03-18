@@ -5,22 +5,24 @@ import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductService } from '../../../../services/product.service';
 import { Product } from '../../../../models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
   styleUrls: ['./update-product.component.css']
 })
-
 export class UpdateProductComponent implements OnInit {
   updateProductForm: FormGroup;
   file: File | any;
   productId: string = ''; // Initialize productId here
+  dataSource: Product[] = []; // Declare dataSource here
 
   constructor(
     private productService: ProductService,
     private dialogPop: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.updateProductForm = new FormGroup({
       image: new FormControl('', { validators: [Validators.required] }),
@@ -50,20 +52,7 @@ export class UpdateProductComponent implements OnInit {
     this.productService.getProductById(productId).subscribe(
       (response) => {
         const productData = response.data;
-  
-        // Convert image data to base64 string
-        // const uint = new Uint8Array(productData.imageData.buffer.data);
-        // const base64String = "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
-  
-        // Create a Product object with fetched data
-        const product = new Product({
-          id: productData._id,
-          productName: productData.productName,
-          price: productData.productPrice,
-          productDescription: productData.productDescription,
-          quantity: productData.quantity,
-          image: productData.image
-        });
+        // Process product data as needed
       },
       (error) => {
         console.error('Error fetching product details:', error);
@@ -71,12 +60,26 @@ export class UpdateProductComponent implements OnInit {
     );
   }
   
-
-
   updateProduct(): void {
     if (this.updateProductForm.invalid) return;
-
-    // Proceed with updating the product...
+  
+    const productId = this.productId; // Assuming you have the productId available in your component
+    const formData = new FormData();
+    formData.append('image', this.updateProductForm.get('image')?.value || null);
+    formData.append('productName', this.updateProductForm.get('productName')?.value || null);
+    formData.append('productDetails', this.updateProductForm.get('productDetails')?.value || null);
+    formData.append('productPrice', this.updateProductForm.get('productPrice')?.value || null);
+    formData.append('productDescription', this.updateProductForm.get('productDescription')?.value || null);
+    formData.append('quantity', this.updateProductForm.get('quantity')?.value || null);
+  
+    this.productService.updateProduct(productId, formData).subscribe(
+      (response) => {
+        // Handle success response
+      },
+      (error) => {
+        // Handle error response
+      }
+    );
   }
 
   onFileSelected(event: any): void {

@@ -23,12 +23,13 @@ export class ProductService {
     return this.http.delete<any>(`${environment.api_url}/api/product/deleteProduct/${productId}`);
   }
 
-  // updateProduct(productId: string, data: any | object): Observable<any> {
-  //   return this.http.put<any>(`${environment.api_url}/api/product/updateProduct/${productId}`, data);
-  // }
-
+  updateProduct(productId: string, data: any | object): Observable<any> {
+    return this.http.put<any>(`${environment.api_url}/api/product/updateProduct/${productId}`, data);
+  }  
+  
   getProductById(productId: string): Observable<any> {
-    return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/getProducts/${productId}`);
+    return this.http.post<any>(`${environment.api_url}/api/product/getProduct`, { productId });
   }
+  
   
 }  
