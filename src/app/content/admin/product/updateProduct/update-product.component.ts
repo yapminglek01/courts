@@ -41,6 +41,7 @@ export class UpdateProductComponent implements OnInit {
       
       if (this.productId) {
         this.getProductDetails(this.productId);
+
       } else {
         console.error('Product ID is missing.');
       }
@@ -49,16 +50,28 @@ export class UpdateProductComponent implements OnInit {
   
 
   getProductDetails(productId: string): void {
-    this.productService.getProductById(productId).subscribe(
-      (response) => {
-        const productData = response.data;
-        // Process product data as needed
-      },
-      (error) => {
-        console.error('Error fetching product details:', error);
-      }
-    );
-  }
+  this.productService.getProductById(productId).subscribe(
+    (response) => {
+      const productData = response.data;
+      console.log("AAA")
+      console.log(productData);
+      
+      // Set form control values with retrieved data
+      this.updateProductForm.patchValue({
+        image: productData.imageName,
+        productName: productData.productName,
+        productDetails: productData.productDetails,
+        productPrice: productData.productPrice,
+        productDescription: productData.productDescription,
+        quantity: productData.quantity
+      });
+    },
+    (error) => {
+      console.error('Error fetching product details:', error);
+    }
+  );
+}
+
   
   updateProduct(): void {
     if (this.updateProductForm.invalid) return;
@@ -84,5 +97,10 @@ export class UpdateProductComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.file = event.target.files[0];
+    if (this.file) {
+      const fileName = this.file.name;
+      console.log('Selected file name:', fileName);
+      // Now you can use the file name as needed
+    }
   }
 }

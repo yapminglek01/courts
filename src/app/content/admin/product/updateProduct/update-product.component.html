@@ -4,11 +4,12 @@
       
       <!-- Choose Picture -->
       <input type="file" (change)="onFileSelected($event)" hidden #fileInput formControlName="image">
-      <button mat-raised-button (click)="fileInput.click()">Choose Image</button>
-      <span *ngIf="file" class="ps-2">{{ file.name }}</span>
-      <mat-error *ngIf="updateProductForm.get('image')?.hasError('required')">
+      <button mat-raised-button (click)="fileInput?.click()">Choose Image</button>
+      <span *ngIf="updateProductForm.get('image')?.value">{{ updateProductForm.get('image')?.value.split('\\').pop() }}</span>
+      <mat-error *ngIf="updateProductForm.get('image')?.errors?.['required']">
         Please select an image
       </mat-error>
+
   
       <!-- Product Name -->
       <mat-form-field class="w-100 mt-2" appearance="fill">
