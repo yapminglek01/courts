@@ -32,3 +32,15 @@ button[type="submit"] {
 .file-input{
   margin-bottom: 20px;
 }
+
+.product-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.product-image img {
+  max-width: 200px; /* Adjust the maximum width as needed */
+  max-height: 200px; /* Adjust the maximum height as needed */
+}

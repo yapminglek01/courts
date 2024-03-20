@@ -2,15 +2,10 @@
     <form [formGroup]="updateProductForm" (submit)="updateProduct()" enctype="multipart/form-data">
       <h3>Update Product</h3>
       
-      <!-- Choose Picture -->
-      <input type="file" (change)="onFileSelected($event)" hidden #fileInput formControlName="image">
-      <button mat-raised-button (click)="fileInput?.click()">Choose Image</button>
-      <span *ngIf="updateProductForm.get('image')?.value">{{ updateProductForm.get('image')?.value.split('\\').pop() }}</span>
-      <mat-error *ngIf="updateProductForm.get('image')?.errors?.['required']">
-        Please select an image
-      </mat-error>
+      <div class="product-image">
+        <img [src]="updateProductForm.get('image')?.value" alt="Product Image">
+      </div>
 
-  
       <!-- Product Name -->
       <mat-form-field class="w-100 mt-2" appearance="fill">
         <mat-label>Product Name</mat-label>

@@ -55,10 +55,11 @@ export class UpdateProductComponent implements OnInit {
       const productData = response.data;
       console.log("AAA")
       console.log(productData);
-      
+      const uint = new Uint8Array(productData.imageData.buffer.data);
+        const base64String = "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
       // Set form control values with retrieved data
       this.updateProductForm.patchValue({
-        image: productData.imageName,
+        image: base64String,
         productName: productData.productName,
         productDetails: productData.productDetails,
         productPrice: productData.productPrice,
@@ -73,27 +74,29 @@ export class UpdateProductComponent implements OnInit {
 }
 
   
-  updateProduct(): void {
-    if (this.updateProductForm.invalid) return;
-  
-    const productId = this.productId; // Assuming you have the productId available in your component
-    const formData = new FormData();
-    formData.append('image', this.updateProductForm.get('image')?.value || null);
-    formData.append('productName', this.updateProductForm.get('productName')?.value || null);
-    formData.append('productDetails', this.updateProductForm.get('productDetails')?.value || null);
-    formData.append('productPrice', this.updateProductForm.get('productPrice')?.value || null);
-    formData.append('productDescription', this.updateProductForm.get('productDescription')?.value || null);
-    formData.append('quantity', this.updateProductForm.get('quantity')?.value || null);
-  
-    this.productService.updateProduct(productId, formData).subscribe(
-      (response) => {
-        // Handle success response
-      },
-      (error) => {
-        // Handle error response
-      }
-    );
-  }
+updateProduct(): void {
+  if (this.updateProductForm.invalid) return;
+
+  const productId = this.productId;
+
+  const formData = new FormData();
+  formData.append('productName', this.updateProductForm.get('productName')?.value || null);
+  formData.append('productDetails', this.updateProductForm.get('productDetails')?.value || null);
+  formData.append('productPrice', this.updateProductForm.get('productPrice')?.value || null);
+  formData.append('productDescription', this.updateProductForm.get('productDescription')?.value || null);
+  formData.append('quantity', this.updateProductForm.get('quantity')?.value || null);
+
+  this.productService.updateProduct(productId, formData).subscribe(
+    (response) => {
+      console.log('Product updated successfully:', response);
+      // Handle success message display
+    },
+    (error) => {
+      console.error('Error updating product:', error);
+      // Handle error message display
+    }
+  );
+}
 
   onFileSelected(event: any): void {
     this.file = event.target.files[0];

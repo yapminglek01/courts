@@ -58,19 +58,20 @@ router.post('/getProduct', async (req, res) => {
 
 router.put('/updateProduct/:productId', async (req, res) => {
     const { productId } = req.params;
-    const updatedData = req.body; // Assuming the request body contains the updated product data
+    const updatedData = req.body;
+  
     try {
-        // Find the product by ID and update it with the new data
-        const product = await Product.findByIdAndUpdate(productId, updatedData, { new: true });
-        if (!product) {
-            return res.status(404).send({ status: 404, message: "Product not found" });
-        }
-        // Return the updated product in the response
-        return res.status(200).send({ status: 200, message: "Product updated successfully", data: product });
+      const product = await Product.findByIdAndUpdate(productId, updatedData, { new: true });
+  
+      if (!product) {
+        return res.status(404).send({ status: 404, message: "Product not found" });
+      }
+  
+      return res.status(200).send({ status: 200, message: "Product updated successfully", updatedData });
     } catch (error) {
-        return res.status(400).send({ status: 400, message: error.message });
+      return res.status(400).send({ status: 400, message: error.message });
     }
-});
+  });
 
 
 module.exports = router;
