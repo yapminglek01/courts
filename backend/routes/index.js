@@ -3,7 +3,7 @@ const router = require('express').Router();
 // Import all the routes here
 router.use('/auth', require('./auth'))
 router.use('/product', require('./product'))
-
+router.use('/order', require('./order'))
 
 
 router.get('/', (req, res) => {

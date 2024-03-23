@@ -62,4 +62,21 @@ router.post('/update-password', checkAuth(), async (req, res) => {
 });
 
 
+router.post('/update-profile', checkAuth(), async (req, res) => {
+    const user = res.userData; // from token
+    const { name, phone, address } = req.body;
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: user._id },
+            { name: name, phone: phone, address: address },
+            { new: true }
+        );
+        if (!updatedUser) throw new Error('User not found');
+        return res.status(200).send({ status: 200, message: 'Profile successfully updated', user: updatedUser });
+    } catch (error) {
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
+
+
 module.exports = router;

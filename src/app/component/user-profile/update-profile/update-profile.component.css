@@ -1,0 +1,13 @@
+.container {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+  .phone-input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .country-code {
+    margin-right: 8px; /* Adjust spacing between country code and input */
+  }
+  

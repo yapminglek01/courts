@@ -34,6 +34,11 @@ export class AuthService {
     return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/update-password`, data)
   }
 
+  
+  updateProfile(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/update-profile`, data);
+  }
+
   logout(){
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token')
@@ -47,6 +52,7 @@ export class AuthService {
   setCurrentUser(user: any | object){
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
+
 
   getToken(){
     this.token = localStorage.getItem('token') || '';
@@ -70,25 +76,5 @@ export class AuthService {
 
  
 
-//   verifyOldPassword(oldPassword: string): Observable<boolean> {
-//     // Check if currentUser is set
-//     if (!this.currentUser) {
-//         console.error('User is not logged in');
-//         return throwError('User is not logged in');
-//     }
-
-//     // Construct the URL using the appropriate endpoint
-//     const apiUrl = `${environment.api_url}/api/auth/verify-old-password`;
-
-//     // Make the request using the constructed URL
-//     return this.http.post<boolean>(apiUrl, { oldPassword });
-// }
-
-
-// updatePassword(newPassword: string): Observable<any> {
-//   // Make an HTTP request to your backend to update the password
-//   // Example:
-//   return this.http.post<any>(`${this.currentUser}/update-password`, { newPassword });
-// }
   
 }

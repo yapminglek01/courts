@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Update Profile</h1>
+    <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
+      <!-- Name -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Name" formControlName="name" required>
+        <mat-error *ngIf="updateProfileForm.get('name')!.hasError('required')">
+          Please enter your name.
+        </mat-error>
+        <mat-icon matPrefix>account_circle</mat-icon>
+      </mat-form-field>
+      
+      <!-- Phone Number -->
+      <mat-form-field class="w-100" appearance="fill">
+        <div class="phone-input-container">
+          <span class="country-code">+60</span>
+          <input type="text" matInput placeholder="Phone Number" formControlName="phone" required>
+        </div>
+        <mat-error *ngIf="updateProfileForm.get('phone')!.hasError('required')">
+          Please enter a phone number.
+        </mat-error>
+        <mat-error *ngIf="updateProfileForm.get('phone')!.hasError('pattern')">
+          Please enter a valid phone number minimum 9 digits.
+        </mat-error>
+        <mat-icon matPrefix>phone</mat-icon>
+      </mat-form-field>
+      
+      <!-- Address -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input type="text" matInput placeholder="Address" formControlName="address" required>
+        <mat-error *ngIf="updateProfileForm.get('address')!.hasError('required')">
+          Please enter your address.
+        </mat-error>
+        <mat-icon matPrefix>account_circle</mat-icon>
+      </mat-form-field>
+      
+      <!-- Submit Button -->
+      <button mat-raised-button type="submit">Update</button>
+    </form>
+  </div>
+  

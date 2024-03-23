@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
 import { AuthService } from '../../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { UpdatePassComponent } from '../update-pass/update-pass.component';
+import { UpdatePassComponent } from './update-pass/update-pass.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 
 @Component({
@@ -18,7 +19,6 @@ export class UserProfileComponent {
   constructor(private matDialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit(): void {
-    // Retrieve current user data
     this.profileData = this.authService.getCurrentUser();
   }
 
@@ -26,9 +26,9 @@ export class UserProfileComponent {
 
  
 
-  editProfile() {
-    // Implement profile edit logic here
-    console.log('Editing profile...');
+  updateProfile() {
+    this.matDialog.open(UpdateProfileComponent);
+
   }
   products: any[] = []; // Define the 'products' property as an array of any type
 

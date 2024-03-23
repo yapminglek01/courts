@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     res.status(200).send(`Hello product`)
 })
 
-router.get('/getProducts',  async (req, res) => {
+router.get('/products',  async (req, res) => {
     try {
         const product = await Product.find()
         return res.status(200).send({status: 200, message: "Product retrieved", data: JSON.parse(JSON.stringify(product))})
@@ -30,7 +30,19 @@ router.post('/addProduct', memoryUpload.single('image'), async (req, res) => {
     } catch (error) {
         return res.status(400).send({status: 400, message: error.message})
     }
-    // return res.status(401).send({status: 401, message: "An error has occured"})
 })
+
+
+router.get('/product/:id', async (req, res) => {
+    try {
+        const product = await Product.findOne({_id: req.params.id})
+        if(product === null) throw new Error('Product does not exist')
+        delete product.quantity
+        return res.status(200).send({status: 200, message: 'Successfully retrieved product', data: product})
+    } catch(error) {
+        return res.status(400).send({status: 400, message: error.message})
+    }
+})
+
 
 module.exports = router;

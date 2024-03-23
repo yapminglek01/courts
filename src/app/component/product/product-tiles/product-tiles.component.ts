@@ -19,12 +19,13 @@ export class ProductTilesComponent {
   selectProduct(id: string){
     if(this.auth.getCurrentUser().role == null){
       Swal.fire({
-        // position: "top-end",
         icon: "info",
         title: "Please login to continue",
         showConfirmButton: false,
         timer: 1500
       });
     }
+
+    this.router.navigate(['/product', id]);
   }
 }
