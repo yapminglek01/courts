@@ -69,41 +69,53 @@ export class UpdateProductComponent implements OnInit {
     },
     (error) => {
       console.error('Error fetching product details:', error);
-    }
-  );
-}
+      }
+    );
+  }
 
   
-updateProduct(): void {
-  if (this.updateProductForm.invalid) return;
-
-  const productId = this.productId;
-
-  const formData = new FormData();
-  formData.append('productName', this.updateProductForm.get('productName')?.value || null);
-  formData.append('productDetails', this.updateProductForm.get('productDetails')?.value || null);
-  formData.append('productPrice', this.updateProductForm.get('productPrice')?.value || null);
-  formData.append('productDescription', this.updateProductForm.get('productDescription')?.value || null);
-  formData.append('quantity', this.updateProductForm.get('quantity')?.value || null);
-
-  this.productService.updateProduct(productId, formData).subscribe(
-    (response) => {
-      console.log('Product updated successfully:', response);
-      // Handle success message display
-    },
-    (error) => {
-      console.error('Error updating product:', error);
-      // Handle error message display
-    }
-  );
-}
-
-  onFileSelected(event: any): void {
-    this.file = event.target.files[0];
-    if (this.file) {
-      const fileName = this.file.name;
-      console.log('Selected file name:', fileName);
-      // Now you can use the file name as needed
-    }
+  updateProduct(): void {
+    if (this.updateProductForm.invalid) return;
+  
+    const productId = this.productId;
+  
+    const productData = {
+      productName: this.updateProductForm.get('productName')?.value,
+      productDetails: this.updateProductForm.get('productDetails')?.value,
+      productPrice: this.updateProductForm.get('productPrice')?.value,
+      productDescription: this.updateProductForm.get('productDescription')?.value,
+      quantity: this.updateProductForm.get('quantity')?.value
+    };
+  
+    this.productService.updateProduct(productId, productData).subscribe(
+      (response) => {
+        // Handle success message display
+        Swal.fire({
+          title: 'Success!',
+          text: response.message,
+          icon: 'success',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          timer: 750,
+        });
+        console.log('Product updated successfully:', response);
+  
+        // Navigate to adminProduct after a delay
+        setTimeout(() => {
+          this.router.navigate(['adminProduct']);
+        }, 800); // 2000 milliseconds delay
+      },
+      (error) => {
+        // Handle error message display
+        Swal.fire({
+          title: 'Error!',
+          text: error.error.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        console.error('Error updating product:', error);
+      }
+    );
   }
+
 }
