@@ -21,7 +21,7 @@ export class storesMapNonUser implements OnInit {
   loadGoogleMaps(): void {
     if (!window.google || !window.google.maps) {
       const script = document.createElement('script');
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAFQB3enbpR7SsemOR2Ag9OmBz8T3JHgx4&callback=initMap';
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAK42Zjh4o1dCn-PBKlluaoLrckFvYRMog&callback=initMap';
       script.defer = true;
       script.async = true;
       document.head.appendChild(script);
