@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
   
@@ -11,35 +11,42 @@ import { GoogleMapsModule } from '@angular/google-maps'
   templateUrl: './stores-map.component.html',
   styleUrls: ['./stores-map.component.css']
 })
-export class storesMapNonUser {
-  
-  constructor() {}
-        
-    ngOnInit(): void {}
-    
-    display: any;
-    center: google.maps.LatLngLiteral = {
-        lat: 22.2736308,
-        lng: 70.7512555
-    };
-    zoom = 6;
-    
-    /*------------------------------------------
-    --------------------------------------------
-    moveMap()
-    --------------------------------------------
-    --------------------------------------------*/
-    moveMap(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.center = (event.latLng.toJSON());
+export class storesMapNonUser implements OnInit {
+  constructor() { }
+
+  ngOnInit(): void {
+    this.loadGoogleMaps();
+  }
+
+  loadGoogleMaps(): void {
+    if (!window.google || !window.google.maps) {
+      const script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAFQB3enbpR7SsemOR2Ag9OmBz8T3JHgx4&callback=initMap';
+      script.defer = true;
+      script.async = true;
+      document.head.appendChild(script);
+    } else {
+      // Google Maps API is already loaded
+      this.initMap();
     }
-    
-    /*------------------------------------------
-    --------------------------------------------
-    move()
-    --------------------------------------------
-    --------------------------------------------*/
-    move(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
+
+  private initMap(): void {
+    // The location of the center of the map
+    const center = { lat: 3.1319, lng: 101.6841 };
+
+    // Get the map element
+    const mapElement = document.getElementById('map');
+
+    // Check if the map element exists before creating the map
+    if (mapElement) {
+      // Create a new map centered at the specified location
+      new google.maps.Map(mapElement, {
+        zoom: 6,
+        center: center
+      });
+    } else {
+      console.error('Map element not found.');
     }
-    
+  }
 }
