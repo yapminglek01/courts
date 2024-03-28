@@ -12,41 +12,33 @@ import { GoogleMapsModule } from '@angular/google-maps'
   styleUrls: ['./stores-map.component.css']
 })
 export class storesMapNonUser implements OnInit {
-  constructor() { }
+    
+  constructor() {}
+      
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.loadGoogleMaps();
+  display: any;
+  center: google.maps.LatLngLiteral = {
+      lat: 3.1319,
+      lng: 101.6841
+  };
+  zoom = 11;
+
+  /*------------------------------------------
+  --------------------------------------------
+  moveMap()
+  --------------------------------------------
+  --------------------------------------------*/
+  moveMap(event: google.maps.MapMouseEvent) {
+      if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
 
-  loadGoogleMaps(): void {
-    if (!window.google || !window.google.maps) {
-      const script = document.createElement('script');
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAK42Zjh4o1dCn-PBKlluaoLrckFvYRMog&callback=initMap';
-      script.defer = true;
-      script.async = true;
-      document.head.appendChild(script);
-    } else {
-      // Google Maps API is already loaded
-      this.initMap();
-    }
-  }
-
-  private initMap(): void {
-    // The location of the center of the map
-    const center = { lat: 3.1319, lng: 101.6841 };
-
-    // Get the map element
-    const mapElement = document.getElementById('map');
-
-    // Check if the map element exists before creating the map
-    if (mapElement) {
-      // Create a new map centered at the specified location
-      new google.maps.Map(mapElement, {
-        zoom: 6,
-        center: center
-      });
-    } else {
-      console.error('Map element not found.');
-    }
+  /*------------------------------------------
+  --------------------------------------------
+  move()
+  --------------------------------------------
+  --------------------------------------------*/
+  move(event: google.maps.MapMouseEvent) {
+      if (event.latLng != null) this.display = event.latLng.toJSON();
   }
 }

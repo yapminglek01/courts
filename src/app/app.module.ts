@@ -42,6 +42,7 @@ import { UpdatePassComponent } from './component/update-pass/update-pass.compone
 import { UpdateProfileComponent } from './component/update-profile/update-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { UpdateProductComponent } from './content/admin/product/updateProduct/up
     TagModule,
     NgApexchartsModule,
     HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

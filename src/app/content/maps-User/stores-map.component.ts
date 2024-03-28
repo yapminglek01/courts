@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
   
@@ -11,35 +11,34 @@ import { GoogleMapsModule } from '@angular/google-maps'
   templateUrl: './stores-map.component.html',
   styleUrls: ['./stores-map.component.css']
 })
-export class storesMapUser {
-  
+export class storesMapUser implements OnInit {
+    
   constructor() {}
-        
-    ngOnInit(): void {}
-    
-    display: any;
-    center: google.maps.LatLngLiteral = {
-        lat: 22.2736308,
-        lng: 70.7512555
-    };
-    zoom = 6;
-    
-    /*------------------------------------------
-    --------------------------------------------
-    moveMap()
-    --------------------------------------------
-    --------------------------------------------*/
-    moveMap(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.center = (event.latLng.toJSON());
-    }
-    
-    /*------------------------------------------
-    --------------------------------------------
-    move()
-    --------------------------------------------
-    --------------------------------------------*/
-    move(event: google.maps.MapMouseEvent) {
-        if (event.latLng != null) this.display = event.latLng.toJSON();
-    }
-    
+      
+  ngOnInit(): void {}
+
+  display: any;
+  center: google.maps.LatLngLiteral = {
+      lat: 3.1319,
+      lng: 101.6841
+  };
+  zoom = 11;
+
+  /*------------------------------------------
+  --------------------------------------------
+  moveMap()
+  --------------------------------------------
+  --------------------------------------------*/
+  moveMap(event: google.maps.MapMouseEvent) {
+      if (event.latLng != null) this.center = (event.latLng.toJSON());
+  }
+
+  /*------------------------------------------
+  --------------------------------------------
+  move()
+  --------------------------------------------
+  --------------------------------------------*/
+  move(event: google.maps.MapMouseEvent) {
+      if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
 }
