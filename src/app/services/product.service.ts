@@ -28,4 +28,18 @@ export class ProductService {
     const uint = new Uint8Array(data)
     return "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
   }
-}
+
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete<any>(`${environment.api_url}/api/product/deleteProduct/${productId}`);
+  }
+
+  updateProduct(productId: string, data: any | object): Observable<any> {
+    return this.http.put<any>(`${environment.api_url}/api/product/updateProduct/${productId}`, data);
+  }  
+  
+  getProductById(productId: string): Observable<any> {
+    return this.http.post<any>(`${environment.api_url}/api/product/getProduct`, { productId });
+  }
+  
+  
+}  

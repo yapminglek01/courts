@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Order = require('../schema/order')
 const Product = require('../schema/product')
-const { createPaymentSession, retrieveSessionDetails } = require('../stripe')
+const { createPaymentSession, retrieveSessionDetails } = require('../stripe');
 const { checkAuth } = require('../middleware/check-auth')
 
 
@@ -67,5 +67,16 @@ router.post('/update-order', async (req, res) => {
         return res.status(400).send({status: 400, message: error.message})
     }
 })
+
+// Get all orders
+router.get('/getOrders', async (req, res) => {
+    try {
+        const orders = await Order.find({ status: 'complete' });
+        return res.status(200).send({ status: 200, message: "Complete Orders Retrieved", data: orders });
+    } catch (error) {
+        console.error(error);
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
 
 module.exports = router;
