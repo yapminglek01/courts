@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Order = require('../schema/order')
 const Product = require('../schema/product')
-const { createPaymentSession, retrieveSessionDetails } = require('../stripe')
+const { createPaymentSession, retrieveSessionDetails } = require('../stripe');
 const { checkAuth } = require('../middleware/check-auth')
 
 
