@@ -16,7 +16,7 @@ import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 import { customerProduct } from './content/customer/customer-product.component';
 import { storesMapNonUser } from './content/maps-nonUser/stores-map.component';
 import { storesMapUser } from './content/maps-User/stores-map.component';
-import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [
@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'about-us', component: AboutUsComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'order', component: OrderpgComponent },
-      { path: 'productd', component: ProductpgComponent },
+      { path: 'product/:id', component: ProductpgComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProduct', component: adminProduct },
       { path: 'addProduct', component: addProduct},
@@ -34,10 +34,11 @@ const routes: Routes = [
       { path: 'customerProduct', component: customerProduct},
       { path: 'stores-map-nonUser', component: storesMapNonUser},
       { path: 'stores-map-User', component: storesMapUser},
-      { path: 'app-update-product/:id', component: UpdateProductComponent}
+      { path: 'payment', component: PaymentComponent}
+
     ]
   },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

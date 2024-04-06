@@ -37,7 +37,7 @@
     "primeflex": "^3.3.1",
     "primeng": "^17.8.0",
     "rxjs": "~7.8.0",
-    "stripe": "^14.24.0",
+    "stripe": "^14.21.0",
     "sweetalert2": "^11.10.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

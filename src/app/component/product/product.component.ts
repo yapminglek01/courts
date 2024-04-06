@@ -14,12 +14,12 @@ export class ProductComponent {
   constructor(private product: ProductService) { }
 
   ngOnInit(): void{
-    this.product.getProduct().subscribe(
+
+    
+    this.product.getProducts().subscribe(
       (response) => {
         const product = response.data.map((e: any) => {
-          const uint = new Uint8Array(e.imageData.buffer.data)
-          const base64String = "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
-          return new Product({id: e._id, title: e.productName, price: e.productPrice, rating: e.totalRating, image: base64String})
+          return new Product({id: e._id, title: e.productName, price: e.productPrice, rating: e.totalRating, image: this.product.uintBase64(e.imageData.buffer.data)})
         })
         this.cardData = product;
       })

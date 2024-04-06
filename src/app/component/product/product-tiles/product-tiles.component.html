@@ -1,7 +1,16 @@
 <mat-card class="card" (click)="selectProduct(cardData.id)">
     <img mat-card-image [src]="cardData.image">
     <mat-card-content>
-        <h3>{{cardData.title}}</h3>
-        <p>RM {{cardData.price | number:'1.2-2' }}</p>
+        <h3 class="title">{{cardData.title}}</h3>
+        <div class="rating-price">
+            <p class="price">RM {{cardData.price | number:'1.2-2' }}</p>
+
+        <div class="rating">
+
+          <mat-icon *ngFor="let _ of [1]" class="star">star</mat-icon>
+          <p>3.7</p>
+
+        </div>
+      </div>
     </mat-card-content>
 </mat-card>

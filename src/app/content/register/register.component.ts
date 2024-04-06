@@ -13,7 +13,7 @@ export class RegisterComponent {
 
   registerForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]), // Ensure only numbers are entered
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9,}$')]), // Ensure only numbers are entered
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     address: new FormControl('', [Validators.required]),

@@ -14,7 +14,6 @@ const productSchema = mongoose.Schema({
     quantity: { type: Number, required: true },
     quantitySold: { type: Number, default: 0 },
     totalRating: { type: Number, default: 0 },
-    averageRating: { type: Number, default: 0 },
 });
 
 

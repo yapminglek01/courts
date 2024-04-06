@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ReviewComponent } from './review/review.component';
+import { AuthService } from '../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-order',
@@ -12,14 +15,14 @@ export class OrderComponent implements OnInit  {
     // Add more orders here
   ];
 
-  constructor() { }
+  constructor(private matDialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit(): void {
     // Fetch orders from your backend service here if needed
   }
 
-  reviewOrder(order: any) {
-    // Implement logic to navigate to the review page for the selected order
+  submitReview(order: any) {
+    this.matDialog.open(ReviewComponent);
   }
 
   viewReceipt(order: any) {

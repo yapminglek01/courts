@@ -15,8 +15,18 @@ export class ProductService {
     return this.http.post<UserApiResponse>(`${environment.api_url}/api/product/addProduct`, data)
   }
 
-  getProduct(): Observable<any>{
-    return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/getProducts`);
+  getProducts(): Observable<any>{
+    return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/products`);
+  }
+
+  getProduct(id: string): Observable<any>{
+    return this.http.get<UserApiResponse>(`${environment.api_url}/api/product/product/${id}`);
+  }
+
+
+  uintBase64(data: any): string {
+    const uint = new Uint8Array(data)
+    return "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
   }
 
   deleteProduct(productId: string): Observable<any> {

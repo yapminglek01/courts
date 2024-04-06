@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Submit a Review</h1>
+    
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <!-- Rating -->
+      <div class="mb-3 px-5 py-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Rating:</mat-label>
+          <div>
+            <mat-icon *ngFor="let _ of [1, 2, 3, 4, 5]" class="star" (click)="setRating($event)">&#9733;</mat-icon>
+            <input type="hidden" formControlName="rating">
+          </div>
+          <mat-error *ngIf="reviewForm.get('rating')!.hasError('required')">Please select a rating.</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <!-- Comments -->
+      <div class="mb-3 px-5">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Comments:</mat-label>
+          <textarea matInput formControlName="reviewComment" rows="4"></textarea>
+          <mat-error *ngIf="reviewForm.get('reviewComment')!.hasError('required')">Please enter your comments.</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="mb-3 px-5">
+        <button mat-raised-button type="submit" color="primary" [disabled]="reviewForm.invalid">Submit Review</button>
+        <button mat-button type="button" color="warn" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

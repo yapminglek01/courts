@@ -8,13 +8,11 @@ const orderSchema = mongoose.Schema({
     billing_address: { type: String },
     total_amount: { type: Number, required: true },
     quantity: { type: Number, required: true }, 
-    user_id: { type: String, required: true }, 
+    user_id: { type: String, required: true, }, 
     product_id: { type: String, required: true }, 
     receipt_url: { type: String },
     session_id: { type: String, required: true }
-});
-
-orderSchema.plugin(uniqueValidator);
+})
 
 const Order = mongoose.model('Order', orderSchema);
 

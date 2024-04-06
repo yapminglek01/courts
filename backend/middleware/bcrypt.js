@@ -9,7 +9,11 @@ const validatePassword = async (newPass, oldPass) => {
     return await bcrypt.compare(newPass, oldPass)
 }
 
+const randomHasher = async () => {
+    return await bcrypt.hash(Date.now().toString(), saltRounds)
+}
+
 
 module.exports = {
-    encryptPassword, validatePassword
+    encryptPassword, validatePassword, randomHasher
 }
