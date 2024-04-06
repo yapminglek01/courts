@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator')
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const orderSchema = mongoose.Schema({
     created_date: { type: Date, default: new Date() },
@@ -8,12 +8,14 @@ const orderSchema = mongoose.Schema({
     billing_address: { type: String },
     total_amount: { type: Number, required: true },
     quantity: { type: Number, required: true }, 
-    user_id: { type: String, required: true, }, 
+    user_id: { type: String, required: true }, 
     product_id: { type: String, required: true }, 
     receipt_url: { type: String },
     session_id: { type: String, required: true }
-})
+});
 
-orderSchema.plugin(uniqueValidator)
+orderSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('Order', orderSchema)
+const Order = mongoose.model('Order', orderSchema);
+
+module.exports = Order;

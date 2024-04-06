@@ -13,7 +13,7 @@ import {
     ApexGrid,
     ApexPlotOptions
 } from 'ng-apexcharts';
-import { OrderService } from '../../../../services/order.server';
+import { OrderService } from '../../../../services/order.service';
 import { Order } from '../../../../models/order.model';
 
 
@@ -118,25 +118,13 @@ export class SalesRatioComponent implements OnInit {
 
     getOrders(): void {
         this.orderService.getOrders().subscribe(
-            (response) => {
-                const orders = response.map((e: any) => {
-                    // Process each order item here
-                    return new Order({
-                        id: e._id,
-                        status: e.status,
-                        billing_address: e.billing_address,
-                        total_amount: e.total_amount,
-                        quantity: e.quantity,
-                        user_id: e.user_id,
-                        product_id: e.product_id,
-                        session_id: e.session_id
-                    });
-                });
-                console.log(orders); 
-            },
-            (error) => {
-                console.error('Error fetching orders:', error);
-            }
+          (response) => {
+            this.orders = response.data; 
+            console.log('Orders:', this.orders);
+          },
+          (error) => {
+            console.error('Error fetching orders:', error);
+          }
         );
     }
     

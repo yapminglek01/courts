@@ -68,4 +68,15 @@ router.post('/update-order', async (req, res) => {
     }
 })
 
+// Get all orders
+router.get('/getOrders', async (req, res) => {
+    try {
+        const orders = await Order.find({ status: 'complete' });
+        return res.status(200).send({ status: 200, message: "Complete Orders Retrieved", data: orders });
+    } catch (error) {
+        console.error(error);
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
+
 module.exports = router;
