@@ -21,7 +21,7 @@ export class adminProduct implements OnInit {
   }
 
   getProducts(): void {
-    this.productService.getProduct().subscribe(
+    this.productService.getProducts().subscribe(
       (response) => {
         const products = response.data.map((e: any) => {
           const uint = new Uint8Array(e.imageData.buffer.data);
