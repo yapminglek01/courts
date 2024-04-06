@@ -3,15 +3,11 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 
 const productSchema = mongoose.Schema({
-    imagePath: { type: String } ,// File path for the image
-    productName: { type: String, required: true },
-    productDetails: { type: String, required: true },
-    productPrice: { type: Number, required: true },
-    productDescription: { type: String, required: true },
-    quantity: { type: Number, required: true },
+    created_data: { type: Date, required: true },
+    status: { type: String, required: true },
+    billing_address: { type: Number, required: true },
+    total_amount: { type: Number, required: true },
     quantitySold: { type: Number, default: 0 },
-    totalRating: { type: Number, default: 0 },
-    averageRating: { type: Number, default: 0 },
 });
 
 

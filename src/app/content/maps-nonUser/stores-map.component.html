@@ -5,6 +5,7 @@
                 [center]="center"
                 [zoom]="zoom"
                 (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)">
+                (mapMousemove)="move($event)"
+                (mapReady)="onMapReady($event)">
     </google-map>
 </div>

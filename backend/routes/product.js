@@ -56,22 +56,17 @@ router.post('/getProduct', async (req, res) => {
     }
 });
 
-// router.put('/updateProduct/:productId', async (req, res) => {
-//     const { productId } = req.params;
-//     const updatedData = req.body;
-  
-//     try {
-//       const product = await Product.findByIdAndUpdate(productId, updatedData, { new: true });
-  
-//       if (!product) {
-//         return res.status(404).send({ status: 404, message: "Product not found" });
-//       }
-  
-//       return res.status(200).send({ status: 200, message: "Product updated successfully", updatedData });
-//     } catch (error) {
-//       return res.status(400).send({ status: 400, message: error.message });
-//     }
-//   });
-
+router.post('/getOrgetOrdersder', async (req, res) => {
+    const { productId } = req.body;
+    try {
+        const product = await Order.findById(productId);
+        if (!product) {
+            return res.status(404).send({ status: 404, message: "Product not found" });
+        }
+        return res.status(200).send({ status: 200, message: "Product retrieved successfully", data: product });
+    } catch (error) {
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
 
 module.exports = router;

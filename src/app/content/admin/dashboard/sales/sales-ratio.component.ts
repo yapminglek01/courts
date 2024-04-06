@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {
     ApexAxisChartSeries,
     ApexChart,
@@ -13,6 +13,8 @@ import {
     ApexGrid,
     ApexPlotOptions
 } from 'ng-apexcharts';
+import { OrderService } from '../../../../services/order.server';
+import { Order } from '../../../../models/order.model';
 
 
 export type salesChartOptions = {
@@ -42,8 +44,9 @@ export class SalesRatioComponent implements OnInit {
     public salesChartOptions1: Partial<salesChartOptions>;
     private chartInstance: any;
     currentView: string = 'yearly';
+    orders: Order[] = [];
 
-    constructor() {
+    constructor(private router: Router, private orderService: OrderService) {
       this.salesChartOptions = {
             series: [
                 { name: "yearly", data: [31, 40, 28, 51, 42] },
@@ -110,5 +113,31 @@ export class SalesRatioComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getOrders();
     }
+
+    getOrders(): void {
+        this.orderService.getOrders().subscribe(
+            (response) => {
+                const orders = response.map((e: any) => {
+                    // Process each order item here
+                    return new Order({
+                        id: e._id,
+                        status: e.status,
+                        billing_address: e.billing_address,
+                        total_amount: e.total_amount,
+                        quantity: e.quantity,
+                        user_id: e.user_id,
+                        product_id: e.product_id,
+                        session_id: e.session_id
+                    });
+                });
+                console.log(orders); 
+            },
+            (error) => {
+                console.error('Error fetching orders:', error);
+            }
+        );
+    }
+    
 }

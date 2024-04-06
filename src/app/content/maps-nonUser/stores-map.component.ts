@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-  
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
   
 @Component({
   selector: 'app-root',
@@ -24,21 +23,24 @@ export class storesMapNonUser implements OnInit {
   };
   zoom = 11;
 
-  /*------------------------------------------
-  --------------------------------------------
-  moveMap()
-  --------------------------------------------
-  --------------------------------------------*/
   moveMap(event: google.maps.MapMouseEvent) {
       if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
 
-  /*------------------------------------------
-  --------------------------------------------
-  move()
-  --------------------------------------------
-  --------------------------------------------*/
   move(event: google.maps.MapMouseEvent) {
       if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
+
+  addMarker(map: google.maps.Map) {
+      const marker = new google.maps.Marker({
+          position: { lat: 3.1481, lng: 101.6164 }, // Set the desired latitude and longitude
+          map: map,
+          title: 'My Marker'
+      });
+  }
+
+  onMapReady(event: any) {
+      const map = event.target as google.maps.Map;
+      this.addMarker(map);
   }
 }
