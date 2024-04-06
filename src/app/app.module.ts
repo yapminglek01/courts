@@ -43,6 +43,8 @@ import { UpdateProfileComponent } from './component/user-profile/update-profile/
 import { AuthInterceptor } from './services/auth-interceptor';
 import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReviewComponent } from './component/order/review/review.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 
 @NgModule({
@@ -76,7 +78,9 @@ import { GoogleMapsModule } from '@angular/google-maps';
     customerProduct,
     UpdatePassComponent,
     UpdateProfileComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    ReviewComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
