@@ -1,6 +1,6 @@
 export interface OrderDetails {
     id: string;
-    created_data: Date;
+    created_date: Date;
     status: string;
     billing_address: string;
     total_amount: Number;
@@ -12,7 +12,7 @@ export interface OrderDetails {
   
   export class Order implements OrderDetails {
     id: string;
-    created_data: Date;
+    created_date: Date;
     status: string;
     billing_address: string;
     total_amount: Number;
@@ -23,7 +23,7 @@ export interface OrderDetails {
   
     constructor(data: Partial<OrderDetails> = {}) {
       this.id = data.id || '';
-      this.created_data = data.created_data || new Date;
+      this.created_date = data.created_date || new Date;
       this.status = data.status || '';
       this.billing_address = data.billing_address || '';
       this.total_amount = data.total_amount || 0;

@@ -3,11 +3,11 @@
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile class="a">
         <mat-grid-tile-header [style.backgroundColor]="'black'">Yearly Sales</mat-grid-tile-header>
-        <h3>RM10,000.00</h3>
+        <h3>{{ totalAmount | currency: 'RM' }}</h3>
       </mat-grid-tile>
       <mat-grid-tile>
         <mat-grid-tile-header [style.backgroundColor]="'black'">Monthly Sales</mat-grid-tile-header>
-        <h3>RM600.00</h3>
+        <h3>{{ totalAmountThisMonth | currency: 'RM' }}</h3>
       </mat-grid-tile>
     </mat-grid-list>
       
