@@ -1,10 +1,17 @@
 <h2>Find Us</h2>
 <div class="map-container">
-    <google-map height="600px"
-                width="1250px"
-                [center]="center"
-                [zoom]="zoom"
-                (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)">
-    </google-map>
+  <google-map
+    height="600px"
+    width="1250px"
+    [center]="center"
+    [zoom]="zoom"
+    (mapClick)="moveMap($event)"
+    (mapInitialized)="onMapReady($event)"
+  >
+    <map-marker
+      *ngFor="let marker of markers"
+      [position]="marker"
+      [options]="markerOptions"
+    ></map-marker>
+  </google-map>
 </div>
