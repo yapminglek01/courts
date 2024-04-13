@@ -8,10 +8,17 @@
     (mapClick)="moveMap($event)"
     (mapInitialized)="onMapReady($event)"
   >
+    <!-- Default markers -->
     <map-marker
-      *ngFor="let marker of markers"
+      *ngFor="let marker of defaultMarkers"
       [position]="marker"
-      [options]="markerOptions"
+      [options]="defaultMarkerOptions"
+    ></map-marker>
+    <!-- Current location marker -->
+    <map-marker
+      *ngIf="currentLocationMarkerOptions !== null && currentLocation !== null"
+      [position]="currentLocation"
+      [options]="currentLocationMarkerOptions"
     ></map-marker>
   </google-map>
 </div>
