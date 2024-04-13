@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
   
-import { GoogleMapsModule } from '@angular/google-maps'
-  
+import { GoogleMapsModule } from '@angular/google-maps' 
+
 @Component({
   selector: 'app-root',
   standalone: true,
