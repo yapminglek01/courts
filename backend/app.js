@@ -22,4 +22,7 @@ app.get('/', async (req, res) => {
 
 app.use('/api', require('./routes'))
 
+
+
+
 module.exports = app;

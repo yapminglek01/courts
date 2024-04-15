@@ -22,7 +22,6 @@ import { AboutUsComponent } from './content/about-us/about-us.component';
 import { ProfileComponent } from './content/profile/profile.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { DataViewModule } from 'primeng/dataview';
-import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { OrderComponent } from './component/order/order.component';
 import { OrderpgComponent } from './content/orderpg/orderpg.component';
@@ -43,6 +42,7 @@ import { UpdateProfileComponent } from './component/user-profile/update-profile/
 import { AuthInterceptor } from './services/auth-interceptor';
 import { ReviewComponent } from './component/order/review/review.component';
 import { PaymentComponent } from './component/payment/payment.component';
+import { RatingModule } from 'primeng/rating';
 
 
 @NgModule({
@@ -63,7 +63,6 @@ import { PaymentComponent } from './component/payment/payment.component';
     AboutUsComponent,
     ProfileComponent,
     UserProfileComponent,
-    OrderComponent,
     OrderpgComponent,
     ProductInfoComponent,
     ProductDetailsComponent,
@@ -77,7 +76,8 @@ import { PaymentComponent } from './component/payment/payment.component';
     UpdatePassComponent,
     UpdateProfileComponent,
     ReviewComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +91,7 @@ import { PaymentComponent } from './component/payment/payment.component';
     TagModule,
     NgApexchartsModule,
     HttpClientModule,
+    RatingModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

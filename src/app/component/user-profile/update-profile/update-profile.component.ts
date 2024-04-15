@@ -54,7 +54,7 @@ export class UpdateProfileComponent implements OnInit {
         console.log('Updated current user:', updatedUserData);
         setTimeout(() => {
           window.location.reload();
-        }, 5000); //one sec
+        }, 1000); //one sec
         // Fetch updated user profile after successful update
         this.fetchUserProfile();
       },

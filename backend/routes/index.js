@@ -4,6 +4,7 @@ const router = require('express').Router();
 router.use('/auth', require('./auth'))
 router.use('/product', require('./product'))
 router.use('/order', require('./order'))
+router.use('/review', require('./review'))
 
 
 router.get('/', (req, res) => {

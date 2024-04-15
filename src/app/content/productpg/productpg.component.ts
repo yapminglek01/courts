@@ -24,6 +24,7 @@ export class ProductpgComponent {
         this.productInfo = response.data
         this.productInfo.image = this.product.uintBase64(this.productInfo.imageData.buffer.data)
         delete this.productInfo.imageData
+        
       },
       (error) => {
         this.router.navigate(['/product']);

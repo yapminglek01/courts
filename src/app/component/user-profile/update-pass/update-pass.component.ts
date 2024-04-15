@@ -46,7 +46,10 @@ export class UpdatePassComponent {
           showConfirmButton: false,
           allowOutsideClick: false,
           timer: 2000,
+          
         });
+        window.location.reload();
+
       },
       (error) => {
         Swal.fire({
@@ -56,6 +59,7 @@ export class UpdatePassComponent {
           confirmButtonText: 'OK'
         });
       }
+
     )
   }
 }

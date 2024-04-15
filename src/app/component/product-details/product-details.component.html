@@ -1,19 +1,19 @@
 <div class="product-container">
-    <div>
-      <!-- Here's the container for the tabs -->
-      <mat-tab-group>
-        <mat-tab label="Description">
-          {{productInfo.productDescription}}
-        </mat-tab>
-        <mat-tab label="Reviews">
-          <!-- Content for the reviews tab goes here -->
-          <p>Comment</p>
-          <cdk-virtual-scroll-viewport appendOnly itemSize="10" class="example-viewport">
-            <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
-        </cdk-virtual-scroll-viewport>
-        
-        </mat-tab>
-      </mat-tab-group>
-    </div>
+  <div>
+    <!-- Here's the container for the tabs -->
+    <mat-tab-group>
+      <mat-tab label="Description">
+        {{ productInfo.productDescription }}
+      </mat-tab>
+      <mat-tab label="Reviews">
+        <!-- Display reviews using *ngFor -->
+        <div *ngFor="let review of mockReviews" class="review-item">
+          <div class="review-content">
+            <p-rating [(ngModel)]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
+            <p class="review-comment">{{ review.comment }}</p>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-  
+</div>

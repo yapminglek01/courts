@@ -28,4 +28,11 @@ export class ProductService {
     const uint = new Uint8Array(data)
     return "data:image/jpeg;base64," + btoa(uint.reduce((str, byte) => str + String.fromCharCode(byte), ''));
   }
+
+  private apiUrl = environment.api_url;
+  getProductById(productId: string): Observable<any> {
+    const url = `${this.apiUrl}/api/product/${productId}`;
+    return this.http.get<any>(url);
+  }
+  
 }

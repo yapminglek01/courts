@@ -68,4 +68,38 @@ router.post('/update-order', async (req, res) => {
     }
 })
 
+router.get('/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    const status = req.query.status; // Retrieve the status query parameter
+  
+    try {
+      // Fetch orders from database based on userId and status
+      const orders = await Order.find({ user_id: userId, status: status });
+  
+      if (!orders || orders.length === 0) {
+        return res.status(404).json({ message: 'No orders found with the specified criteria.' });
+      }
+  
+      return res.status(200).json(orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      return res.status(500).json({ message: 'Internal server error.' });
+    }
+  });
+  
+
+  router.get('/all', async (req, res) => {
+    try {
+      const orders = await Order.find(); // Fetch all orders from MongoDB
+  
+      if (!orders || orders.length === 0) {
+        return res.status(404).json({ message: 'No orders found.' });
+      }
+  
+      res.status(200).json(orders); // Respond with the array of orders
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(500).json({ message: 'Internal server error.' });
+    }
+  });
 module.exports = router;
