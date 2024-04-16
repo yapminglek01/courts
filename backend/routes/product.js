@@ -74,6 +74,17 @@ router.put('/updateProduct/:productId', async (req, res) => {
     }
   });
 
+  router.get('/product/:id', async (req, res) => {
+    try {
+        const product = await Product.findOne({_id: req.params.id})
+        if(product === null) throw new Error('Product does not exist')
+        delete product.quantity
+        return res.status(200).send({status: 200, message: 'Successfully retrieved product', data: product})
+    } catch(error) {
+        return res.status(400).send({status: 400, message: error.message})
+    }
+})
+
 router.get('/productreview/:id', async (req, res) => {
     const productId = req.params.id;
   
