@@ -2,6 +2,20 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 var cors = require('cors');
+const allowedOrigins = ['http://localhost:4200'];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Check if the origin is allowed or is undefined (e.g., direct fetch from Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
+
+app.use(bodyParser.json({ limit: '10mb' }));
 
 // connect to the database
 require('./mongodb')()
