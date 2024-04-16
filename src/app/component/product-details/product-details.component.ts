@@ -22,17 +22,22 @@ export class ProductDetailsComponent {
     // Retrieve productId from route parameters
     this.route.params.subscribe(params => {
       this.productId = params['id'];
-      this.loadReviews(); // Load reviews for the current product
+      this.loadReviews();
+      console.log(this.productId); // Log reviews to check in the browser console
+      // Load reviews for the current product
     });
   }
 
   loadReviews(): void {
-    this.productService.getReviewsByProductId(this.productId).subscribe(
+    this.productService.getReviewsByProductIt(this.productId).subscribe(
       (reviews) => {
         this.reviews = reviews;
-        console.log(this.productId); // Log reviews to check in the browser console
+        console.log(this.productId);
 
         console.log('Reviews:', reviews); // Log reviews to check in the browser console
+        // Log reviews to check in the browser console
+
+
       },
       (error) => {
         console.error('Error fetching reviews:', error);

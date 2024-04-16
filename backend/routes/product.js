@@ -46,7 +46,7 @@ router.get('/product/:id', async (req, res) => {
     }
 })
 
-router.get('/product/:id', async (req, res) => {
+router.get('/productreview/:id', async (req, res) => {
     const productId = req.params.id;
   
     try {

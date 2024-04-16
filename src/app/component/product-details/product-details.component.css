@@ -37,3 +37,23 @@ p{
   font-size: 22px; /* Adjust the font size for the review comments */
   margin-bottom: 8px; /* Add margin below each review comment */
 }
+
+/* CSS for review items */
+.review-item {
+  margin-bottom: 20px; /* Add bottom margin between review items */
+  padding: 15px; /* Add padding around each review item */
+  border: 1px solid #ccc; /* Add border around each review item */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  background-color: #f9f9f9; /* Optional: Add background color for review items */
+}
+
+/* CSS for review content */
+.review-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* CSS for review comment */
+.review-comment {
+  margin-top: 10px; /* Add top margin for review comment */
+}
