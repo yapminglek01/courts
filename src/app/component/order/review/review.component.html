@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Submit a Review</h1>
+  
+  <form [formGroup]="reviewForm" (ngSubmit)="submitReview()" class="review-form">
+    <!-- Display order_id and product_id (readonly) -->
+    <div class="form-group">
+      <label for="orderId">Order ID:</label>
+      <input type="text" formControlName="orderId" id="orderId" readonly class="form-control">
+    </div>
+
+    <div class="form-group">
+      <input type="hidden" formControlName="productId" id="productId" readonly class="form-control">
+    </div>
+
+    <!-- Rating Section -->
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <p-rating formControlName="rating" [cancel]="false" binary="false"></p-rating>
+    </div>
+
+    <!-- Review Comment Section -->
+    <div class="form-group">
+      <label for="reviewComment">Review Comment:</label>
+      <textarea formControlName="reviewComment" id="reviewComment" class="form-control" rows="6"></textarea>
+      <mat-error *ngIf="reviewForm.get('reviewComment')?.invalid && reviewForm.get('reviewComment')?.touched">
+        Please enter your comments.
+      </mat-error>
+    </div>
+
+    <!-- Submit and Cancel Buttons -->
+    <div class="button-group">
+      <button type="submit" [disabled]="reviewForm.invalid" class="btn btn-primary">Submit Review</button>
+      <button type="button" (click)="cancel()" class="btn btn-secondary">Cancel</button>
+    </div>
+  </form>
+</div>

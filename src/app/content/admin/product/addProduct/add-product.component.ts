@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductService } from '../../../../services/product.service';
+
 
 @Component({
   selector: 'app-add-product',
@@ -10,43 +13,55 @@ import { Router } from '@angular/router';
 })
 export class addProduct {
     
-    constructor(private router: Router) {}
+    constructor(private router: Router, private productService: ProductService, private dialogPop: MatDialog) {}
 
     addProductForm = new FormGroup({
+        image: new FormControl('', {validators: [Validators.required]}),
         productName: new FormControl('', {validators: [Validators.required]}),
-        productCategory: new FormControl('', {validators: [Validators.required]}),
-        location: new FormControl('', {validators: [Validators.required]}),
-        price: new FormControl('', {validators: [Validators.required]}),
-        description: new FormControl('', {validators: [Validators.required]}),
-        numberOfProducts: new FormControl('', {validators: [Validators.required]}),
-        
+        productDetails: new FormControl('', {validators: [Validators.required]}),
+        productPrice: new FormControl('', {validators: [Validators.required]}),
+        productDescription: new FormControl('', {validators: [Validators.required]}),
+        quantity: new FormControl('', {validators: [Validators.required]}),
     });
 
-    // Define the method to handle file selection
-    onFileSelected(event: any) {
-      const file: File = event.target.files[0];
-      // Handle the file as needed
-    }
+    file: File | any
 
     async addProduct() {
         if (this.addProductForm.invalid) return;
-      
-        await Swal.fire({
-          title: 'Success!',
-          text: 'You have successfully added product!',
-          icon: 'success',
-          showConfirmButton: false,
-          allowOutsideClick: false,
-          timer: 1000,
+        const formData = new FormData();
+        formData.append('image', this.file);
+        Object.keys(this.addProductForm.controls)
+        .filter(controlName => controlName !== 'image') // Filter out the 'file' control
+        .forEach(controlName => {
+            formData.append(controlName, this.addProductForm.get(controlName)?.value);
         });
+
+        this.productService.addProduct(formData)
+        .subscribe((response) => {
+          Swal.fire({
+            title: 'Success!',
+            text: response.message,
+            icon: 'success',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            timer: 2000,
+          });
+          this.dialogPop.closeAll();
+        }, (error) =>{
+          Swal.fire({
+            title: 'Error!',
+            text: error.error.message,
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        })
       
-        setTimeout(() => {
-          this.router.navigate(['dashboard']);
-        }, 500); // Wait for 2 seconds before navigation
-      
-        
-          
+        // setTimeout(() => {
+        //   this.router.navigate(['dashboard']);
+        // }, 500); // Wait for 2 seconds before navigation    
     }
-   
-    
+
+    onFileSelected(event: any) {
+      this.file = event.target.files[0];
+    }
 }

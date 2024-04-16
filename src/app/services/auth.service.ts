@@ -1,28 +1,47 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Observable, map, throwError } from 'rxjs';
+import { UserApiResponse } from './http.response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private currentUser: any = null;
+  private token: string = '';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  async login(data: any | object){
-    await this.delay(2000);
-    if(data.email === 'admin@gmail.com' && data.password === 'admin') {
-      this.setCurrentUser({email: data.email, role: 'admin'});
-      return true;
-    }
-    else if(data.email === 'user@gmail.com' && data.password === 'user') {
-      this.setCurrentUser({email: data.email, role: 'user'});
-      return true;
-    }
+  register(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/register`, data)
+  }
 
-    return false;
+  login(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/login`, data)
+      .pipe(
+        map((res: UserApiResponse) => {
+          if(res.status === 200){
+            this.setUser(res.data.user)
+            this.setToken(res.data.token)
+          }
+          return res;
+        })
+      )
+  }
+
+  updatePassword(data: any | object): Observable<any>{
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/update-password`, data)
+  }
+
+  
+  updateProfile(data: any | object): Observable<any> {
+    return this.http.post<UserApiResponse>(`${environment.api_url}/api/auth/update-profile`, data);
   }
 
   logout(){
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token')
   }
 
 
@@ -34,8 +53,28 @@ export class AuthService {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
-  // Temporary delay simulation. Can be removed when backend is ready
-  private delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+
+  getToken(){
+    this.token = localStorage.getItem('token') || '';
+    return this.token;
   }
+
+  setToken(token: string){
+    localStorage.setItem('token', token)
+    this.token = token;
+  }
+
+  private setUser(data: any){
+    data.role =
+    data.type === 'U' ? 'user' : 
+    data.type === 'A' ? 'admin' :
+    ''
+    this.setCurrentUser(data);
+    this.currentUser = data.user; // Set currentUser after successful login
+  }
+  
+
+ 
+
+  
 }

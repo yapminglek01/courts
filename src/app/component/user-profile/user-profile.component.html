@@ -1,45 +1,40 @@
-
 <div class="title-container">
   <h1>User Profile</h1>
 </div>
 <mat-card>
-    <mat-card-content class="profile-content">
-      <div class="left-content">
-        <!-- Add image here -->
-        <img class="profile-image" src="assets/images/logo.png" alt="Profile Image">
+  <mat-card-content class="profile-content">
+    <div class="left-content">
+      <!-- Add image here -->
+      <img class="profile-image" src="assets/images/logo.png" alt="Profile Image">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="right-content">
+  
+      <div class="profile-detail">
+        <div class="label">Name:</div>
+        <div class="value">{{ profileData.name }}</div>
       </div>
-  
-      <div class="divider"></div>
-  
-      <div class="right-content">
-        <div class="profile-detail">
-          <div class="label">ID:</div>
-          <div class="value">{{ profileData.id }}</div>
-        </div>
-        <div class="profile-detail">
-          <div class="label">Name:</div>
-          <div class="value">{{ profileData.name }}</div>
-        </div>
-        <div class="profile-detail">
-          <div class="label">Email:</div>
-          <div class="value">{{ profileData.email }}</div>
-        </div>
-        <div class="profile-detail">
-          <div class="label">Phone Number:</div>
-          <div class="value">{{ profileData.phone }}</div>
-        </div>
-        <div class="profile-detail">
-          <div class="label">Address:</div>
-          <div class="value">{{ profileData.address }}</div>
-        </div>
+      <div class="profile-detail">
+        <div class="label">Email:</div>
+        <div class="value">{{ profileData.email }}</div>
       </div>
-    </mat-card-content>
-  
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="updatePassword()">Update Password</button>
-      <button mat-raised-button color="accent" (click)="editProfile()">Edit</button>
-    </mat-card-actions>
-    
-  </mat-card>
-  
-  
+      <div class="profile-detail">
+        <div class="label">Phone Number:</div>
+        <div class="value">{{ profileData.phone }}</div>
+      </div>
+      <div class="profile-detail">
+        <div class="label">Address:</div>
+        <div class="value">{{ profileData.address }}</div>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions><button mat-raised-button color="primary" (click)="updatePassword()">Update Password</button>
+
+
+    <button mat-raised-button color="accent" (click)="updateProfile()">Edit</button>
+  </mat-card-actions>
+
+</mat-card>

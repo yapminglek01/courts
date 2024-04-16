@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   currentUser: any = this.authService.getCurrentUser();
+  currentUserId: any;
 
   constructor(private authService: AuthService, private router:Router) {}
 
@@ -20,8 +21,7 @@ export class HeaderComponent {
 
   logout(){
     this.authService.logout();
-    // this.router.navigate(['/home']);
-    window.location.reload();
-    
+    this.router.navigate(['/login']);
+
   }
 }

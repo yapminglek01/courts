@@ -1,8 +1,16 @@
-<div class="card" >
-  <img class="card-img-top" [src]="cardData.image" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ cardData.title }}</h5>
-    <p class="card-text">{{ cardData.content }}</p>
-    <p>The price placeholder {{ cardData.price }}</p>
-  </div>
-</div>
+<mat-card class="card" (click)="selectProduct(cardData.id)">
+    <img mat-card-image [src]="cardData.image">
+    <mat-card-content>
+        <h4 class="title">{{cardData.title}}</h4>
+        <div class="rating-price">
+            <h3 class="title">RM {{cardData.price | number:'1.2-2' }}</h3>
+
+        <!-- <div class="rating">
+
+          <mat-icon *ngFor="let _ of [1]" class="star">star</mat-icon>
+          <p>3.7</p>
+
+        </div> -->
+      </div>
+    </mat-card-content>
+</mat-card>

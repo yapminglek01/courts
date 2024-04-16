@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product, ProductDetails } from '../../models/product.model';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -8,14 +9,23 @@ import { Product, ProductDetails } from '../../models/product.model';
 })
 export class ProductComponent {
 
-  cardData: ProductDetails[] = [
-    new Product({title: 'Card 1', content: 'This is the content for Card 1.', price: 1000, image: 'https://via.placeholder.com/150'}),
-    new Product({title: 'Card 2', content: 'This is the content for Card 2.'}),
-    new Product({title: 'Card 3', content: 'This is the content for Card 3.'}),
-    new Product({title: 'Card 4', content: 'This is the content for Card 4.'}),
-  ]
+  cardData: ProductDetails[] = []
 
-  constructor() { }
+  constructor(private product: ProductService) { }
+
+  ngOnInit(): void{
+
+    
+    this.product.getProducts().subscribe(
+      (response) => {
+        const product = response.data.map((e: any) => {
+          return new Product({id: e._id, title: e.productName, price: e.productPrice, rating: e.totalRating, image: this.product.uintBase64(e.imageData.buffer.data)})
+        })
+        this.cardData = product;
+      })
+  }
+
+
 
 
 }

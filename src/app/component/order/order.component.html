@@ -1,113 +1,29 @@
-
-
 <div class="title-container">
-    <h1>Order History</h1>
+  <h1>Order History</h1>
 </div>
 
 <div class="order-list">
   <div class="order" *ngFor="let order of orders">
-    <!-- Order Card -->
     <div class="order-card">
-      <!-- Product Image -->
-      <div class="product-image">
-        <img src="assets/images/furniture1.jpg" alt="Product Image">
+     <div class="product-image">
+        <img [src]="order.productImage" alt="Product Image">
       </div>
-      
-      <!-- Order Details -->
+      <!-- Display order details -->
       <div class="order-details">
         <div class="order-header">
-          <h2>Order #{{ order.id }}</h2>
-          <p>Date: {{ order.date }}</p>
+          <h2>Order #{{ order._id }}</h2>
+          <p>Date: {{ order.created_date | date }}</p>
         </div>
         <div class="order-summary">
           <div class="order-item">
-            <p>Product Name: PAX / FORSAND
-              Wardrobe, dark grey/dark grey, 250x60x236 cm</p>
-            <p>Quantity: 1</p>
-            <p>Price: RM 2199</p>
-          </div>
-          <!-- Add more order items here -->
-        </div>
-        <div class="order-total">
-          <p>Total: {{ order.total }}</p>
-        </div>
-        
-        <!-- Order Actions -->
-        <div class="order-actions">
-          <button class="review-btn" (click)="reviewOrder(order)">Review</button>
-          <button class="view-receipt-btn" (click)="viewReceipt(order)">View Receipt</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="order-list">
-  <div class="order" *ngFor="let order of orders">
-    <!-- Order Card -->
-    <div class="order-card">
-      <!-- Product Image -->
-      <div class="product-image">
-        <img src="assets/images/furniture2.jpg" alt="Product Image">
-      </div>
-      
-      <!-- Order Details -->
-      <div class="order-details">
-        <div class="order-header">
-          <h2>Order #{{ order.id }}</h2>
-          <p>Date: {{ order.date }}</p>
-        </div>
-        <div class="order-summary">
-          <div class="order-item">
-            <p>Product Name: {{ order.productName }}</p>
             <p>Quantity: {{ order.quantity }}</p>
-            <p>Price: {{ order.price }}</p>
+            <p>Total Amount: RM {{ order.total_amount }}</p>
+            <p>Status: {{ order.status }}</p>
+            <!-- Add more order details as needed -->
           </div>
-          <!-- Add more order items here -->
         </div>
-        <div class="order-total">
-          <p>Total: {{ order.total }}</p>
-        </div>
-        
-        <!-- Order Actions -->
         <div class="order-actions">
-          <button class="review-btn" (click)="reviewOrder(order)">Review</button>
-          <button class="view-receipt-btn" (click)="viewReceipt(order)">View Receipt</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div><div class="order-list">
-  <div class="order" *ngFor="let order of orders">
-    <!-- Order Card -->
-    <div class="order-card">
-      <!-- Product Image -->
-      <div class="product-image">
-        <img src="assets/images/logo.png" alt="Product Image">
-      </div>
-      
-      <!-- Order Details -->
-      <div class="order-details">
-        <div class="order-header">
-          <h2>Order #{{ order.id }}</h2>
-          <p>Date: {{ order.date }}</p>
-        </div>
-        <div class="order-summary">
-          <div class="order-item">
-            <p>Product Name: {{ order.productName }}</p>
-            <p>Quantity: {{ order.quantity }}</p>
-            <p>Price: {{ order.price }}</p>
-          </div>
-          <!-- Add more order items here -->
-        </div>
-        <div class="order-total">
-          <p>Total: {{ order.total }}</p>
-        </div>
-        
-        <!-- Order Actions -->
-        <div class="order-actions">
-          <button class="review-btn" (click)="reviewOrder(order)">Review</button>
+          <button class="review-btn" (click)="submitReview(order)">Review</button>
           <button class="view-receipt-btn" (click)="viewReceipt(order)">View Receipt</button>
         </div>
       </div>

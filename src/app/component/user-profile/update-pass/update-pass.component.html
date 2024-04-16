@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Update Password</h1>
+    <form [formGroup]="updatePasswordForm" (ngSubmit)="updatePassword()">
+        <!-- Old Password -->
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Old Password</mat-label>
+            <input type="password" matInput placeholder="Old Password" formControlName="oldPassword" required>
+            <mat-error *ngIf="updatePasswordForm.controls.oldPassword.hasError('required')">
+                Please enter your old password.
+            </mat-error>
+            <mat-icon matPrefix>lock</mat-icon>
+        </mat-form-field>
+
+        <!-- New Password -->
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>New Password</mat-label>
+            <input type="password" matInput placeholder="New Password" formControlName="newPassword" required>
+            <mat-error *ngIf="updatePasswordForm.controls.newPassword.hasError('required')">
+                Please enter a new password.
+            </mat-error>
+            <mat-icon matPrefix>lock</mat-icon>
+        </mat-form-field>
+
+        <!-- Confirm New Password -->
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Confirm New Password</mat-label>
+            <input type="password" matInput placeholder="Confirm New Password" formControlName="confirmPassword" required>
+            <mat-error *ngIf="updatePasswordForm.controls.confirmPassword.hasError('required')">
+                Please confirm your new password.
+            </mat-error>
+            <mat-error *ngIf="updatePasswordForm.controls.confirmPassword.hasError('mismatch')">
+                Password does not match.
+            </mat-error>
+            <mat-icon matPrefix>lock</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit">Update Password</button>
+    </form>
+</div>

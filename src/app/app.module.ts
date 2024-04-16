@@ -22,7 +22,6 @@ import { AboutUsComponent } from './content/about-us/about-us.component';
 import { ProfileComponent } from './content/profile/profile.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { DataViewModule } from 'primeng/dataview';
-import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
 import { OrderComponent } from './component/order/order.component';
 import { OrderpgComponent } from './content/orderpg/orderpg.component';
@@ -37,6 +36,13 @@ import { adminProduct } from './content/admin/product/admin-product.component';
 import { addProduct } from './content/admin/product/addProduct/add-product.component';
 import { nonUserProduct } from './content/NonUser/nonUser-product.component';
 import { customerProduct } from './content/customer/customer-product.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UpdatePassComponent } from './component/user-profile/update-pass/update-pass.component';
+import { UpdateProfileComponent } from './component/user-profile/update-profile/update-profile.component';
+import { AuthInterceptor } from './services/auth-interceptor';
+import { ReviewComponent } from './component/order/review/review.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { RatingModule } from 'primeng/rating';
 
 
 @NgModule({
@@ -57,7 +63,6 @@ import { customerProduct } from './content/customer/customer-product.component';
     AboutUsComponent,
     ProfileComponent,
     UserProfileComponent,
-    OrderComponent,
     OrderpgComponent,
     ProductInfoComponent,
     ProductDetailsComponent,
@@ -67,7 +72,12 @@ import { customerProduct } from './content/customer/customer-product.component';
     adminProduct,
     addProduct,
     nonUserProduct,
-    customerProduct
+    customerProduct,
+    UpdatePassComponent,
+    UpdateProfileComponent,
+    ReviewComponent,
+    PaymentComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,10 +89,11 @@ import { customerProduct } from './content/customer/customer-product.component';
     DataViewModule,
     RatingModule,
     TagModule,
-   NgApexchartsModule
-
+    NgApexchartsModule,
+    HttpClientModule,
+    RatingModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 
 })

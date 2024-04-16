@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center pt-5">
+    <mat-card *ngIf="status === 'pending'">
+        <mat-card-header>
+            <mat-card-title>Thank You! Your Payment Is Being Processed</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>We are currently processing your payment. This typically takes 1-2 minutes.</p>
+            <div class="spinner-container" *ngIf="processing" class="d-flex justify-content-center">
+                <mat-spinner *ngIf="spinnerType === 'default'" ></mat-spinner>
+            </div>
+            <p *ngIf="!processing">Your payment is complete! You will receive a confirmation email shortly.</p>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="status === 'complete'">
+        <mat-card-header>
+            <mat-card-title>Thank You! Your Payment has been confirmed !</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="content">
+            <div class="d-flex justify-content-center">
+                <mat-icon class="huge-green-tick">check_circle</mat-icon>
+            </div>
+            <p>Redirecting you to your orders page...</p>
+        </mat-card-content>
+    </mat-card>
+</div>
