@@ -10,10 +10,11 @@ import { HttpClient } from '@angular/common/http';
 export class ReviewService {
 
 
-  constructor(private http: HttpClient) { }
   private apiUrl = environment.api_url;
 
+  constructor(private http: HttpClient) { }
+
   submitReview(reviewData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/add-review`, reviewData);
+    return this.http.post<UserApiResponse>(`${this.apiUrl}/api/review/addcomment`, reviewData);
   }
 }

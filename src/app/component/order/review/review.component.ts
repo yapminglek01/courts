@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { ReviewService } from '../../../services/review.service';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 @Component({
   selector: 'app-review',
@@ -47,17 +48,23 @@ export class ReviewComponent {
     this.reviewService.submitReview(reviewData).subscribe(
       (response) => {
         console.log('Review submitted successfully:', reviewData);
-        this.dialogRef.close(); // Close dialog after successful submission
+        Swal.fire({
+          icon: 'success',
+          title: 'Review Submitted!',
+          text: 'Thank you for your review.',
+          confirmButtonText: 'Close'
+        }).then((result) => {
+          // Close the dialog upon SweetAlert confirmation
+          if (result.isConfirmed) {
+            this.dialogRef.close(); // Close the dialog
+          }
+        });
       },
       (error) => {
         console.error('Error submitting review:', reviewData);
-        // Handle error if submission fails
       }
     );
-    this.dialogRef.close();
-
   }
-
   
   cancel(): void {
     this.reviewForm.reset();

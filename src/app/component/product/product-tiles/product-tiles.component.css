@@ -37,4 +37,6 @@
   font-size: 20px; /* Adjust the size of the stars */
 
 }
-
+.price {
+  font-size: 25px; /* Adjust this value for desired font size */
+}

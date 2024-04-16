@@ -1,27 +1,41 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const Review = require('../schema/review');
 
-
+// router.use(express.json());
 router.use((req, res, next) => {
-    next();
+  next();
 })
 
-router.get('/', (req, res) => {
-    res.send('Order api working')
+router.get('/', async (req, res) => {
+  res.status(200).send(` product`)
 })
 
-router.post('/add-review', async (req, res) => {
-    try {
-      const { rating, comment, orderId, productId } = req.body;
-  
-      // Handle the review submission logic here
-      // Example: Save the review to the database
-  
-      return res.status(200).json({ message: 'Review added successfully.' });
-    } catch (error) {
-      console.error('Error adding review:', error);
-      return res.status(500).json({ message: 'Internal server error.' });
-    }
-  });
+router.get('/add', async (req, res) => {
+  res.status(200).send('GET request received');
+});
+
+// Handle POST request at '/addcomment' endpoint
+router.post('/addcomment', async (req, res) => {
+   try {
+    const { rating, comment, orderId, productId } = req.body;
+
+    const newReview = new Review({
+      rating,
+      comment,
+      orderId,
+      productId
+    });
+
+    await newReview.save();
+
+    return res.status(200).json({ message: 'Review added successfully.' });
+  } catch (error) {
+    console.error('Error adding review:', error);
+    return res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
+ 
+
+
 module.exports = router;

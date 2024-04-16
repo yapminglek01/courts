@@ -16,16 +16,23 @@ export class ProductTilesComponent {
   ngOnInit() {
   }
 
-  selectProduct(id: string){
-    if(this.auth.getCurrentUser().role == null){
+  selectProduct(id: string) {
+    if (!this.auth.getCurrentUser()?.role) {
+      // User is not logged in
       Swal.fire({
         icon: "info",
         title: "Please login to continue",
         showConfirmButton: false,
         timer: 1500
+      }).then(() => {
+        // Navigate to the login route
+        this.router.navigate(['/login']);
       });
+    } else {
+      // User is logged in
+      // Navigate to the product details route with the provided ID
+      this.router.navigate(['/product', id]);
     }
-
-    this.router.navigate(['/product', id]);
   }
+  
 }

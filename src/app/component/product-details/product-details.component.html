@@ -7,11 +7,17 @@
       </mat-tab>
       <mat-tab label="Reviews">
         <!-- Display reviews using *ngFor -->
-        <div *ngFor="let review of mockReviews" class="review-item">
-          <div class="review-content">
-            <p-rating [(ngModel)]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
-            <p class="review-comment">{{ review.comment }}</p>
+        <div *ngIf="reviews && reviews.length > 0">
+          <div *ngFor="let review of reviews" class="review-item">
+            <div class="review-content">
+              <!-- Display rating using PrimeNG p-rating component -->
+              <p-rating [ngModel]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
+              <p class="review-comment">{{ review.comment }}</p>
+            </div>
           </div>
+        </div>
+        <div *ngIf="!reviews || reviews.length === 0" class="no-reviews-message">
+          No reviews available for this product.
         </div>
       </mat-tab>
     </mat-tab-group>
