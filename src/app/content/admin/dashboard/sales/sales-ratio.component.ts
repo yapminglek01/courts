@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Router } from '@angular/router';
 import {
     ApexAxisChartSeries,
     ApexChart,
@@ -13,7 +13,8 @@ import {
     ApexGrid,
     ApexPlotOptions
 } from 'ng-apexcharts';
-
+import { OrderService } from '../../../../services/order.service';
+import { Order } from '../../../../models/order.model';
 
 export type salesChartOptions = {
     series: ApexAxisChartSeries | any;
@@ -42,8 +43,12 @@ export class SalesRatioComponent implements OnInit {
     public salesChartOptions1: Partial<salesChartOptions>;
     private chartInstance: any;
     currentView: string = 'yearly';
+    orders: Order[] = [];
+    totalAmount: number = 0;
+    totalAmountThisMonth: number = 0;
+    monthlySalesData: number[] = [];
 
-    constructor() {
+    constructor(private router: Router, private orderService: OrderService) {
       this.salesChartOptions = {
             series: [
                 { name: "yearly", data: [31, 40, 28, 51, 42] },
@@ -78,7 +83,7 @@ export class SalesRatioComponent implements OnInit {
 
         this.salesChartOptions1 = {
             series: [
-                { name: "monthly", data: [31, 40, 28, 51, 42, 65, 75, 49, 60, 75, 39, 150] },
+                { name: "monthly", data: [] }, // Initialize with empty data
             ],
             chart: {
                 fontFamily: 'Montserrat,sans-serif',
@@ -110,5 +115,43 @@ export class SalesRatioComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getOrders();
+    }
+
+    getOrders(): void {
+        this.orderService.getOrders().subscribe(
+            (response) => {
+                this.orders = response.data;
+                console.log('Orders:', this.orders);
+                // Calculate total amount for the year
+                this.totalAmount = this.orders.reduce((total, order) => total + (+order.total_amount), 0);
+                console.log('Total Amount This Year:', this.totalAmount);
+
+                // Calculate total amount for the current month
+                const currentMonth = new Date().getMonth();
+                this.totalAmountThisMonth = this.orders
+                    .filter(order => new Date(order.created_date).getMonth() === currentMonth)
+                    .reduce((total, order) => total + (+order.total_amount), 0);
+                console.log('Total Amount This Month:', this.totalAmountThisMonth);
+
+                // Calculate monthly sales data
+                this.calculateMonthlySalesData();
+            },
+            (error) => {
+                console.error('Error fetching orders:', error);
+            }
+        );
+    }
+
+    calculateMonthlySalesData(): void {
+        const monthlyData: number[] = Array(12).fill(0); // Initialize array with zeros for each month
+        this.orders.forEach(order => {
+            const month = new Date(order.created_date).getMonth();
+            monthlyData[month] += +order.total_amount; // Accumulate sales amount for each month
+        });
+        this.monthlySalesData = monthlyData;
+        console.log('Monthly Sales Data:', this.monthlySalesData);
+        // Update the series data for monthly sales chart
+        this.salesChartOptions1.series = [{ name: "monthly", data: this.monthlySalesData }];
     }
 }

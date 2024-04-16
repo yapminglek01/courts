@@ -17,6 +17,7 @@ import { customerProduct } from './content/customer/customer-product.component';
 import { storesMapNonUser } from './content/maps-nonUser/stores-map.component';
 import { storesMapUser } from './content/maps-User/stores-map.component';
 import { PaymentComponent } from './component/payment/payment.component';
+import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, children: [
@@ -34,8 +35,8 @@ const routes: Routes = [
       { path: 'customerProduct', component: customerProduct},
       { path: 'stores-map-nonUser', component: storesMapNonUser},
       { path: 'stores-map-User', component: storesMapUser},
-      { path: 'payment', component: PaymentComponent}
-
+      { path: 'payment', component: PaymentComponent},
+      { path: 'app-update-product/:id', component: UpdateProductComponent },
     ]
   },
   { path: 'login', component: LoginComponent },

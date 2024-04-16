@@ -46,5 +46,17 @@ export class ProductService {
     const url = `${this.apiUrl}/api/product/${productId}`;
     return this.http.get<any>(url);
   }
+
+  deleteProduct(productId: string): Observable<any> {
+    return this.http.delete<any>(`${environment.api_url}/api/product/deleteProduct/${productId}`);
+  }
+
+  updateProduct(productId: string, data: any | object): Observable<any> {
+    return this.http.put<any>(`${environment.api_url}/api/product/updateProduct/${productId}`, data);
+  }  
+  
+  // getProductById(productId: string): Observable<any> {
+  //   return this.http.post<any>(`${environment.api_url}/api/product/getProduct`, { productId });
+  // }
   
 }

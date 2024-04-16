@@ -17,8 +17,6 @@ const productSchema = mongoose.Schema({
 });
 
 
-
 productSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('Product', productSchema)
-

@@ -40,6 +40,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UpdatePassComponent } from './component/user-profile/update-pass/update-pass.component';
 import { UpdateProfileComponent } from './component/user-profile/update-profile/update-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { UpdateProductComponent } from './content/admin/product/updateProduct/update-product.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { ReviewComponent } from './component/order/review/review.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { RatingModule } from 'primeng/rating';
@@ -75,6 +77,7 @@ import { RatingModule } from 'primeng/rating';
     customerProduct,
     UpdatePassComponent,
     UpdateProfileComponent,
+    UpdateProductComponent,
     ReviewComponent,
     PaymentComponent,
     OrderComponent,
@@ -92,6 +95,7 @@ import { RatingModule } from 'primeng/rating';
     NgApexchartsModule,
     HttpClientModule,
     RatingModule,
+    GoogleMapsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

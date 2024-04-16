@@ -1,31 +1,37 @@
 .toolbar-button {
-    /* Your existing button styles */
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    border: 2px solid #007bff; /* Border color */
-    border-radius: 5px;
-    color: #007bff; /* Text color */
-    background-color: transparent; /* Transparent background */
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    
-    /* Absolute positioning */
-    margin-top: 75px;
-    margin-left: 135px;
-    bottom: 25px;
-  }
+  /* Your existing button styles */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #007bff; /* Border color */
+  border-radius: 5px;
+  color: #007bff; /* Text color */
+  background-color: transparent; /* Transparent background */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   
-  .toolbar-button:hover {
-    background-color: #007bff; /* Background color on hover */
-    color: #fff; /* Text color on hover */
-  }
+  /* Absolute positioning */
+  margin-top: 75px;
+  margin-left: 135px;
+  bottom: 25px;
+}
 
-  table {
-    width: 40%;
-    margin-bottom: 15%;
-  }
+.toolbar-button:hover {
+  background-color: #007bff; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+}
 
-  
+table {
+  width: 40%;
+  margin-bottom: 15%;
+}
+
+.description-cell {
+  max-width: 500px; /* Adjust the width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

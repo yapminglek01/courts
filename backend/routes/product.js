@@ -34,17 +34,45 @@ router.post('/addProduct', memoryUpload.single('image'), async (req, res) => {
     }
 })
 
-
-router.get('/product/:id', async (req, res) => {
+router.delete('/deleteProduct/:productId', async (req, res) => {
+    const { productId } = req.params;
     try {
-        const product = await Product.findOne({_id: req.params.id})
-        if(product === null) throw new Error('Product does not exist')
-        delete product.quantity
-        return res.status(200).send({status: 200, message: 'Successfully retrieved product', data: product})
-    } catch(error) {
-        return res.status(400).send({status: 400, message: error.message})
+        await Product.findByIdAndDelete(productId);
+        return res.status(200).send({ status: 200, message: "Product deleted successfully" });
+    } catch (error) {
+        return res.status(400).send({ status: 400, message: error.message });
     }
-})
+});
+
+router.post('/getProduct', async (req, res) => {
+    const { productId } = req.body;
+    try {
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).send({ status: 404, message: "Product not found" });
+        }
+        return res.status(200).send({ status: 200, message: "Product retrieved successfully", data: product });
+    } catch (error) {
+        return res.status(400).send({ status: 400, message: error.message });
+    }
+});
+
+router.put('/updateProduct/:productId', async (req, res) => {
+    const { productId } = req.params;
+    const updatedData = req.body;
+  
+    try {
+      const product = await Product.findByIdAndUpdate(productId, updatedData, { new: true });
+  
+      if (!product) {
+        return res.status(404).send({ status: 404, message: "Product not found" });
+      }
+  
+      return res.status(200).send({ status: 200, message: "Product updated successfully", updatedData });
+    } catch (error) {
+      return res.status(400).send({ status: 400, message: error.message });
+    }
+  });
 
 router.get('/product/:id', async (req, res) => {
     const productId = req.params.id;

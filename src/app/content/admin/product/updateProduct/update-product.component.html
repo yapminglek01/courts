@@ -1,0 +1,58 @@
+<div class="form-container">
+    <form [formGroup]="updateProductForm" (submit)="updateProduct()" enctype="multipart/form-data">
+      <h3>Update Product</h3>
+      
+      <div class="product-image">
+        <img [src]="updateProductForm.get('image')?.value" alt="Product Image">
+      </div>
+
+      <!-- Product Name -->
+      <mat-form-field class="w-100 mt-2" appearance="fill">
+        <mat-label>Product Name</mat-label>
+        <input type="text" matInput placeholder="Product Name" formControlName="productName" required>
+        <mat-error *ngIf="updateProductForm.get('productName')?.hasError('required')">
+          Please enter Product Name
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Product Details -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Product Details</mat-label>
+        <input type="text" matInput placeholder="Product Details" formControlName="productDetails" required>
+        <mat-error *ngIf="updateProductForm.get('productDetails')?.hasError('required')">
+          Please enter Product Details
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Price -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Price</mat-label>
+        <input type="number" matInput placeholder="Price" formControlName="productPrice" required min="0.01" step="0.01">
+        <mat-error *ngIf="updateProductForm.get('productPrice')?.hasError('required')">
+          Please enter Price
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Description -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" formControlName="productDescription" required></textarea>
+        <mat-error *ngIf="updateProductForm.get('productDescription')?.hasError('required')">
+          Please enter Description
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Number of Products -->
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Number of Products</mat-label>
+        <input type="number" matInput placeholder="Number of Products" formControlName="quantity" required min="1">
+        <mat-error *ngIf="updateProductForm.get('quantity')?.hasError('required')">
+          Please enter Number of Products
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Submit Button -->
+      <button type="submit" mat-raised-button color="primary">Update</button>
+    </form>
+  </div>
+  
