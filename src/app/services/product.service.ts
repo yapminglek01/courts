@@ -55,8 +55,8 @@ export class ProductService {
     return this.http.put<any>(`${environment.api_url}/api/product/updateProduct/${productId}`, data);
   }  
   
-  // getProductById(productId: string): Observable<any> {
-  //   return this.http.post<any>(`${environment.api_url}/api/product/getProduct`, { productId });
-  // }
+  getProductID(productId: string): Observable<any> {
+    return this.http.post<any>(`${environment.api_url}/api/product/getProduct`, { productId });
+  }
   
 }

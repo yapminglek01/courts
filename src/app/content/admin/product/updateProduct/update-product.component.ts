@@ -50,7 +50,7 @@ export class UpdateProductComponent implements OnInit {
   
 
   getProductDetails(productId: string): void {
-  this.productService.getProductById(productId).subscribe(
+  this.productService.getProductID(productId).subscribe(
     (response) => {
       const productData = response.data;
       console.log("AAA")
