@@ -29,12 +29,9 @@ export class ProductService {
   }
 
 
-  getReviewsByProductIt(productId: string): Observable<any[]> {
-    const url = `${this.apiUrl}/api/product/${productId}`;
-
-    return this.http.get<any[]>(url);
+  getReviewsByProductIt(id: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.api_url}/api/product/productreview/${id}`);
   }
-
 
   uintBase64(data: any): string {
     const uint = new Uint8Array(data)
