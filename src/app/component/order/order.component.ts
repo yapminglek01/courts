@@ -36,7 +36,10 @@ export class OrderComponent implements OnInit {
         // Fetch completed orders for the current user
         this.orderService.getCompleteOrdersByUserId(this.userId).subscribe(
           (orders: any[]) => {
-            this.orders = orders;
+            this.orders = orders.map((order) => {
+              order.productImage = this.productService.uintBase64(order.product_id.imageData.buffer.data);
+              return order
+            });
             console.log('Completed Orders:', this.orders);
           },
           (error) => {
@@ -51,17 +54,17 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  
+
 
   submitReview(order: any): void {
     this.matDialog.open(ReviewComponent, {
       data: { orderId: order._id, productId: order.product_id }
-      
+
     });
     console.log('Order ID:',  order._id);
     console.log('Product ID:', order.product_id);
   }
-  
+
   viewReceipt(order: any): void {
     if (order.receipt_url) {
       window.open(order.receipt_url, '_blank'); // Open receipt_url in a new tab

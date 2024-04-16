@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
+  check = true;
+  constructor() {}
+
+
+
+  toggleCheck() {
+    this.check = !this.check;
+  }
 }
